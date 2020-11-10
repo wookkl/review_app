@@ -16,8 +16,8 @@ LANGUAGE_CHOICES = (
 PREFERENCE_MOVIES = "mv"
 PREFERENCE_BOOKS = "bk"
 PREFERENCE_CHOICES = (
-    (PREFERENCE_MOVIES, "Movies"),
-    (PREFERENCE_BOOKS, "Books"),
+    (PREFERENCE_MOVIES, "Movie"),
+    (PREFERENCE_BOOKS, "Book"),
 )
 
 # book genre choices

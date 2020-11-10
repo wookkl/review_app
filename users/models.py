@@ -8,16 +8,16 @@ class User(AbstractUser):
 
     """ Custom User Model Definition """
 
-    bio = models.TextField(null=True)
+    bio = models.TextField(blank=True)
     preference = models.CharField(
-        choices=choices.PREFERENCE_CHOICES, max_length=2, null=True, blank=True
+        choices=choices.PREFERENCE_CHOICES, max_length=2, blank=True
     )
     language = models.CharField(
-        choices=choices.LANGUAGE_CHOICES, max_length=2, null=True, blank=True
+        choices=choices.LANGUAGE_CHOICES, max_length=2, blank=True
     )
-    fav_books = MultiSelectField(
+    favorite_book_genres = MultiSelectField(
         choices=choices.BOOK_GENRE_CHOICES, null=True, blank=True
     )
-    fav_movies = MultiSelectField(
+    favorite_movie_genres = MultiSelectField(
         choices=choices.MOVIE_GENRE_CHOICES, null=True, blank=True
     )
