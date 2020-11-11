@@ -3,26 +3,21 @@ from core.models import TimeStampedModel
 from users import models as user_models
 from movies import models as movie_models
 from books import models as book_models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Review(TimeStampedModel):
 
     """ Review Model Definition """
 
-    """
-        Here are the models you have to create:
-        - Review
-        created_by (ForeignKey => users.User)
-        text
-        movie (ForeignKey => movies.Movie, null,blank)
-        book (ForeignKey => movies.Movie, null,blank)
-        rating
-    ="""
     created_by = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
-    text = models.TextField()
+    text = models.TextField(blank=True)
     movie = models.ForeignKey(
         movie_models.Movie, on_delete=models.CASCADE, null=True, blank=True
     )
     book = models.ForeignKey(
         book_models.Book, on_delete=models.CASCADE, null=True, blank=True
+    )
+    rating = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)], default=5
     )

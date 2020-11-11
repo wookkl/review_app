@@ -15,5 +15,5 @@ class User(AbstractUser):
     language = models.CharField(
         choices=choices.LANG_CHOICES, max_length=2, default=choices.LANG_ENGLISH
     )
-    fav_book_genres = MultiSelectField(choices=choices.GENRE_CHOICES, default=1)
-    fav_movie_genres = MultiSelectField(choices=choices.GENRE_CHOICES, default=1)
+    fav_book_genres = MultiSelectField(choices=choices.GENRE_CHOICES, null=True)
+    fav_movie_genres = MultiSelectField(choices=choices.GENRE_CHOICES, null=True)

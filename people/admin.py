@@ -2,7 +2,7 @@ from django.contrib import admin
 from . import models
 
 
-@admin.register(models.People)
-class PeopleAdmin(admin.ModelAdmin):
+@admin.register(models.Person)
+class PersonAdmin(admin.ModelAdmin):
 
-    """ People Admin Definition """
+    """ Person Admin Definition """
