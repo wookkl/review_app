@@ -18,9 +18,6 @@ class Movie(TimeStampedModel):
     )
     cover_image = models.ImageField(null=True, blank=True)
     category = models.ManyToManyField(category_models.Category)
-    rating = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(5)], default=5
-    )
     director = models.ForeignKey(
         person_models.Person,
         on_delete=models.CASCADE,
@@ -30,3 +27,15 @@ class Movie(TimeStampedModel):
         person_models.Person,
         related_name="casted_movie",
     )
+
+    def __str__(self):
+        return f"{self.title} - {self.director.name}"
+
+    def rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_ratings += review.rating_average()
+            return round(all_ratings / len(all_reviews), 1)
+        return 0

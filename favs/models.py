@@ -12,3 +12,6 @@ class FavList(TimeStampedModel):
     created_by = models.OneToOneField(user_models.User, on_delete=models.CASCADE)
     books = models.ManyToManyField(book_models.Book, blank=True)
     movies = models.ManyToManyField(movie_models.Movie, blank=True)
+
+    def __str__(self):
+        return f"{self.created_by}'s Favorite list"

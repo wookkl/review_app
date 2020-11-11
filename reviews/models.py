@@ -19,5 +19,8 @@ class Review(TimeStampedModel):
         book_models.Book, on_delete=models.CASCADE, null=True, blank=True
     )
     rating = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(5)], default=5
+        validators=[MinValueValidator(0), MaxValueValidator(10)], default=10
     )
+
+    def __str__(self):
+        return f"{self.text[:20]} - {self.created_by}"

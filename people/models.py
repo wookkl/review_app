@@ -18,3 +18,6 @@ class Person(TimeStampedModel):
     name = models.CharField(max_length=20)
     kind = models.CharField(max_length=20, choices=KIND_CHOICES, default=KIND_ACTOR)
     photo = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.kind}"

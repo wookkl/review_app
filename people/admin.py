@@ -6,3 +6,13 @@ from . import models
 class PersonAdmin(admin.ModelAdmin):
 
     """ Person Admin Definition """
+
+    list_display = (
+        "name",
+        "kind",
+    )
+
+    list_filter = (
+        "name",
+        "kind",
+    )

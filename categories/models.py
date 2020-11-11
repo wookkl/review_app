@@ -16,3 +16,6 @@ class Category(TimeStampedModel):
     )
     name = models.CharField(max_length=20)
     kind = models.CharField(max_length=10, choices=KIND_CHOICES, default=KIND_BOOK)
+
+    def __str__(self):
+        return f"{self.name} - {self.kind}"

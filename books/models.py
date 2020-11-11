@@ -18,10 +18,19 @@ class Book(TimeStampedModel):
     )
     category = models.ManyToManyField(category_models.Category)
     cover_image = models.ImageField(null=True, blank=True)
-    rating = models.IntegerField(
-        validators=[MinValueValidator(0), MaxValueValidator(5)], default=5
-    )
     writer = models.ForeignKey(
         person_models.Person,
         on_delete=models.CASCADE,
     )
+
+    def __str__(self):
+        return f"{self.title} - {self.writer.name}"
+
+    def rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        if len(all_reviews) > 0:
+            for review in all_reviews:
+                all_ratings += review.rating_average()
+            return round(all_ratings / len(all_reviews), 1)
+        return 0

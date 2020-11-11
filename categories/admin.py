@@ -6,3 +6,10 @@ from . import models
 class CategoryAdmin(admin.ModelAdmin):
 
     """ Category Admin Definition """
+
+    list_display = (
+        "name",
+        "kind",
+    )
+
+    list_filter = ("kind",)
