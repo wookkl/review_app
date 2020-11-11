@@ -1,28 +1,28 @@
 # language choices
 
-LANGUAGE_ENGLISH = "en"
-LANGUAGE_KOREAN = "kr"
-LANGUAGE_JAPANESE = "jp"
-LANGUAGE_CHINESE = "cn"
-LANGUAGE_CHOICES = (
-    (LANGUAGE_ENGLISH, "English"),
-    (LANGUAGE_KOREAN, "Korean"),
-    (LANGUAGE_JAPANESE, "Japanese"),
-    (LANGUAGE_CHINESE, "Chinese"),
+LANG_ENGLISH = "en"
+LANG_KOREAN = "kr"
+LANG_JAPANESE = "jp"
+LANG_CHINESE = "cn"
+LANG_CHOICES = (
+    (LANG_ENGLISH, "English"),
+    (LANG_KOREAN, "Korean"),
+    (LANG_JAPANESE, "Japanese"),
+    (LANG_CHINESE, "Chinese"),
 )
 
 # preference choices
 
-PREFERENCE_MOVIES = "mv"
-PREFERENCE_BOOKS = "bk"
-PREFERENCE_CHOICES = (
-    (PREFERENCE_MOVIES, "Movie"),
-    (PREFERENCE_BOOKS, "Book"),
+PREF_MOVIES = "mv"
+PREF_BOOKS = "bk"
+PREF_CHOICES = (
+    (PREF_MOVIES, "Movies"),
+    (PREF_BOOKS, "Books"),
 )
 
-# book genre choices
+# genre choices
 
-BOOK_GENRE_CHOICES = (
+GENRE_CHOICES = (
     (1, "Fantasy"),
     (2, "Adventure"),
     (3, "Romance"),
@@ -47,19 +47,4 @@ BOOK_GENRE_CHOICES = (
     (22, "Families & Relationships"),
     (23, "Humor"),
     (24, "Children’s"),
-)
-
-# movie genre choices
-
-MOVIE_GENRE_CHOICES = (
-    (1, "Action"),
-    (2, "Adventure"),
-    (3, "Comedy"),
-    (4, "Crime"),
-    (5, "Drama"),
-    (6, "Epic"),
-    (7, "Musical"),
-    (8, "Science Fiction"),
-    (9, "War"),
-    (10, "Westurn"),
 )
