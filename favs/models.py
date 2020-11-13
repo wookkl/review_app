@@ -9,14 +9,10 @@ class FavList(TimeStampedModel):
     created_by = models.OneToOneField("users.User", on_delete=models.CASCADE)
     books = models.ManyToManyField(
         "books.Book",
-        blank=True,
-        null=True,
         related_name="fav_lists",
     )
     movies = models.ManyToManyField(
         "movies.Movie",
-        blank=True,
-        null=True,
         related_name="fav_lists",
     )
 

@@ -16,7 +16,11 @@ class Movie(TimeStampedModel):
         default=1900,
     )
     cover_image = models.ImageField(null=True, blank=True)
-    category = models.ForeignKey("categories.Category", on_delete=models.CASCADE)
+    category = models.ForeignKey(
+        "categories.Category",
+        on_delete=models.CASCADE,
+        related_name="movies",
+    )
     director = models.ForeignKey(
         "people.Person",
         on_delete=models.CASCADE,
@@ -24,7 +28,6 @@ class Movie(TimeStampedModel):
     )
     cast = models.ManyToManyField(
         "people.Person",
-        related_name="movies",
     )
 
     def __str__(self):
