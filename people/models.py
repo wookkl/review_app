@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from core.models import TimeStampedModel
 
 
@@ -10,14 +11,17 @@ class Person(TimeStampedModel):
     KIND_DIRECTOR = "director"
     KIND_WRITER = "writer"
     KIND_CHOICES = (
-        (KIND_ACTOR, "Actor"),
-        (KIND_DIRECTOR, "Director"),
-        (KIND_WRITER, "Writer"),
+        (KIND_ACTOR, _("Actor")),
+        (KIND_DIRECTOR, _("Director")),
+        (KIND_WRITER, _("Writer")),
     )
 
-    name = models.CharField(max_length=20)
-    kind = models.CharField(max_length=20, choices=KIND_CHOICES, default=KIND_ACTOR)
+    name = models.CharField(max_length=120)
+    kind = models.CharField(max_length=20, choices=KIND_CHOICES)
     photo = models.ImageField(null=True, blank=True)
 
     def __str__(self):
-        return f"{self.name} - {self.kind}"
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "people"

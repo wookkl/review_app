@@ -47,7 +47,6 @@ PROJECT_APPS = [
     "movies.apps.MoviesConfig",
     "people.apps.PeopleConfig",
     "reviews.apps.ReviewsConfig",
-    "multiselectfield",
 ]
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 

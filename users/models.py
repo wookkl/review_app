@@ -1,6 +1,6 @@
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from categories import models as category_models
 
 
 class User(AbstractUser):
@@ -12,17 +12,17 @@ class User(AbstractUser):
     LANG_JAPANESE = "jp"
     LANG_CHINESE = "cn"
     LANG_CHOICES = (
-        (LANG_ENGLISH, "English"),
-        (LANG_KOREAN, "Korean"),
-        (LANG_JAPANESE, "Japanese"),
-        (LANG_CHINESE, "Chinese"),
+        (LANG_ENGLISH, _("English")),
+        (LANG_KOREAN, _("Korean")),
+        (LANG_JAPANESE, _("Japanese")),
+        (LANG_CHINESE, _("Chinese")),
     )
 
     PREF_MOVIES = "mv"
     PREF_BOOKS = "bk"
     PREF_CHOICES = (
-        (PREF_MOVIES, "Movies"),
-        (PREF_BOOKS, "Books"),
+        (PREF_MOVIES, _("Movies")),
+        (PREF_BOOKS, _("Books")),
     )
 
     bio = models.TextField(blank=True)
@@ -33,14 +33,14 @@ class User(AbstractUser):
         choices=LANG_CHOICES, max_length=2, default=LANG_ENGLISH
     )
     fav_book_genre = models.ForeignKey(
-        category_models.Category,
+        "categories.Category",
         null=True,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         related_name="users_fav_book",
     )
     fav_movie_genre = models.ForeignKey(
-        category_models.Category,
+        "categories.Category",
         null=True,
-        on_delete=models.PROTECT,
+        on_delete=models.SET_NULL,
         related_name="users_fav_movie",
     )
