@@ -15,7 +15,7 @@ class Movie(TimeStampedModel):
         help_text=_("Use the following format: <YYYY>"),
         default=1900,
     )
-    cover_image = models.ImageField(null=True, blank=True)
+    cover_image = models.ImageField(null=True, blank=True, upload_to="movie_photos")
     category = models.ForeignKey(
         "categories.Category",
         on_delete=models.CASCADE,

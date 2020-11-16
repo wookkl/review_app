@@ -16,7 +16,7 @@ class Book(TimeStampedModel):
         default=datetime.now().year,
     )
     category = models.ManyToManyField("categories.Category")
-    cover_image = models.ImageField(null=True, blank=True)
+    cover_image = models.ImageField(null=True, blank=True, upload_to="book_photos")
     writer = models.ForeignKey(
         "people.Person",
         on_delete=models.CASCADE,
