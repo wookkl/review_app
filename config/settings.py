@@ -48,7 +48,12 @@ PROJECT_APPS = [
     "people.apps.PeopleConfig",
     "reviews.apps.ReviewsConfig",
 ]
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
+
+THIRDPARTY_APPS = [
+    "django_seed",
+]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRDPARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

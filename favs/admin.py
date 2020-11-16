@@ -7,10 +7,9 @@ class FavAdmin(admin.ModelAdmin):
 
     """ Fav Admin Definition """
 
-    list_display = ("created_by",)
+    list_display = ("__str__",)
 
     list_filter = (
-        "created_by",
         "books",
         "movies",
     )

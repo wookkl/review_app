@@ -15,8 +15,12 @@ class Book(TimeStampedModel):
         help_text=_("Use the following format: <YYYY>"),
         default=datetime.now().year,
     )
-    category = models.ManyToManyField("categories.Category")
     cover_image = models.ImageField(null=True, blank=True, upload_to="book_photos")
+    category = models.ForeignKey(
+        "categories.Category",
+        on_delete=models.CASCADE,
+        related_name="books",
+    )
     writer = models.ForeignKey(
         "people.Person",
         on_delete=models.CASCADE,

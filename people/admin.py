@@ -20,9 +20,11 @@ class PersonAdmin(admin.ModelAdmin):
     )
 
     def get_thumbnail(self, obj):
-        print(obj.photo.url)
-        return mark_safe(
-            f'<a href="{obj.cover_image.url}"><img src="{obj.cover_image.url}" width="40" height="40"/></a>'
-        )
+        try:
+            return mark_safe(
+                f'<a href="{obj.photo.url}"><img src="{obj.photo.url}" width="40" height="40"/></a>'
+            )
+        except Exception:
+            return ""
 
     get_thumbnail.short_description = "Thumbnail"

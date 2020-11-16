@@ -12,6 +12,7 @@ django = "*"
 django-language-field = "*"
 django-multiselectfield = "*"
 pillow = "*"
+django-seed = "*"
 
 [requires]
 python_version = "3.8"
