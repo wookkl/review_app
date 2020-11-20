@@ -1,5 +1,21 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.views.generic import ListView
+from books import models as book_models
 
 
-def home_view(request):
-    return render(request, "books/books_home.html")
+class BookListView(ListView):
+
+    """ Book List View Definition """
+
+    model = book_models.Book
+    paginate_by = 10
+    paginate_orphans = 5
+    template_name = "books/books_list.html"
+    ordering = ("pk",)
+
+    def get_context_data(self, **kwargs):
+        try:
+            return super(BookListView, self).get_context_data(**kwargs)
+        except Http404:
+            self.kwargs["page"] = 1
+            return super(BookListView, self).get_context_data(**kwargs)

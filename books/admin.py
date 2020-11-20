@@ -19,9 +19,11 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ("category", "writer")
 
     def get_thumbnail(self, obj):
-        print(obj.cover_image.url)
-        return mark_safe(
-            f'<a href="{obj.cover_image.url}"><img src="{obj.cover_image.url}" width="40" height="40"/></a>'
-        )
+        try:
+            return mark_safe(
+                f'<a href="{obj.cover_image.url}"><img src="{obj.cover_image.url}" width="40" height="40"/></a>'
+            )
+        except Exception:
+            return ""
 
     get_thumbnail.short_description = "Thumbnail"
