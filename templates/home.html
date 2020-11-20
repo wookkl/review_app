@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block page_name %}
+    Home
+{% endblock page_name %}
+
+{% block content %}
+    
+    {% if movie_page %}
+        <h1>Lastest movies</h1>
+        {% for movie in movie_page.object_list %}
+        <h3>{{movie}} - {{movie.year}}</h3>
+        {% endfor %}
+    {% endif %}
+
+    {% if book_page %}
+        <h1>Lastest books</h1>
+        {% for book in book_page.object_list %}
+        <h3>{{book}} - {{book.year}}</h3>
+        {% endfor %}
+    {% endif %}
+
+    {% if people_page %}
+        <h1>Lastest people</h1>
+        {% for person in person_page.object_list %}
+        <h3>{{person}}</h3>
+        {% endfor %}
+    {% endif %}
+
+
+    <div>
+        {% if has_prev_page %}
+            <a href="?page={{current_page|add:-1}}">Previous</a>
+        {% endif %}
+        
+        <span>{{current_page}}</span>
+        
+        {% if has_next_page %}
+            <a href="?page={{current_page|add:+1}}">Next</a>
+        {% endif %}
+            
+
+    </div>
+{% endblock content %}
