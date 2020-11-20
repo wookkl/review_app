@@ -1,5 +1,13 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from people import models as person_models
 
 
-def home_view(request):
-    return render(request, "people/people_home.html")
+class PersonListView(ListView):
+
+    """ Person List View Definition """
+
+    model = person_models.Person
+    paginate_by = 10
+    paginate_orphans = 5
+    template_name = "people/people_list.html"
+    ordering = ("pk",)

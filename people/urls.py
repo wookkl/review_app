@@ -4,5 +4,5 @@ from people import views as person_views
 app_name = "people"
 
 urlpatterns = [
-    path("", person_views.home_view, name="home"),
+    path("", person_views.PersonListView.as_view(), name="home"),
 ]
