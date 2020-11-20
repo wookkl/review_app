@@ -5,30 +5,30 @@
 
 {% block content %}
     <div>
-        {% if movie_page %}
+        {% if movies %}
             <div><a href="/movies/">all_movies</a></div>
             <h1>Lastest movies</h1>
-            {% for movie in movie_page.object_list %}
+            {% for movie in movies.object_list %}
             <h3>{{movie}} - {{movie.year}}</h3>
             {% endfor %}
         {% endif %}
     </div>
 
     <div>
-        {% if book_page %}
+        {% if books %}
             <div><a href="/books/">all_books</a></div>
             <h1>Lastest books</h1>
-            {% for book in book_page.object_list %}
+            {% for book in books.object_list %}
             <h3>{{book}} - {{book.year}}</h3>
             {% endfor %}
         {% endif %}
     </div>
 
     <div>
-        {% if people_page %}
+        {% if people %}
             <div><a href="/people/">all_people</a></div>
             <h1>Lastest people</h1>
-            {% for person in person_page.object_list %}
+            {% for person in people.object_list %}
             <h3>{{person}}</h3>
             {% endfor %}
         {% endif %}
