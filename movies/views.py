@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.views.generic import ListView
+from django.views.generic import DetailView
 from django.shortcuts import render
 from movies import models as movie_models
 
@@ -22,8 +23,9 @@ class MovieListView(ListView):
             return super(MovieListView, self).get_context_data(**kwargs)
 
 
-def movie_detail(request, pk):
+class MovieDetail(DetailView):
 
-    """ Movie Detail View Definition """
+    """ Room Detail Definition """
 
-    return render(request, "movies/detail.html")
+    model = movie_models.Movie
+    template_name = "movies/detail.html"

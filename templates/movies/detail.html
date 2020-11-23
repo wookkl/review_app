@@ -4,5 +4,24 @@
 {% endblock page_title %}
 
 {% block content %}
+    <h1>{{movie.title}}</h1>
+    <h3>{{movie.year}}</h3>
+    <img src="{{movie.cover_image}}"/>
+
+    <h2>Category</h2>
+    <ul>
+        <li>{{movie.category}}</li>
+    </ul>
+    <h2>Director</h2>
+    <ul>
+        <li>{{movie.director}}</li>
+    </ul>
+    <h2>Cast</h2>
+    {{movie.cast}}
+    <ul>
+        {% for c in movie.cast.all  %}
+            <li>{{c}}</li>
+        {% endfor %}
+    </ul>
 
 {% endblock content %}
