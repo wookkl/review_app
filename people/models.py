@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
 from core.models import TimeStampedModel
 
@@ -25,3 +26,6 @@ class Person(TimeStampedModel):
 
     class Meta:
         verbose_name_plural = "people"
+
+    def get_absolute_url(self):
+        return reverse("people:detail", kwargs={"pk": self.pk})

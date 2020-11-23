@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_title %}
+    Detail Person
+{% endblock page_title %}
+
+{% block content %}
+    <h1>{{person.name}}</h1>
+    <h3>{{person.kind}}</h3>
+    <img src="{{person.photo}}"/>
+{% endblock content %}

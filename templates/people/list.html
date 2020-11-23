@@ -8,7 +8,7 @@
         {% if page_obj %}
             <h1>People</h1>
             {% for person in page_obj %}
-            <h3>{{person.name}} - {{person.kind}}</h3>
+              <a href="{% url 'people:detail' person.pk %}"><h3>{{person.name}}</h3></a>
             {% endfor %}
         {% endif %}
     </div>

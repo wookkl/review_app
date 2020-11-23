@@ -4,5 +4,6 @@ from people import views as person_views
 app_name = "people"
 
 urlpatterns = [
-    path("", person_views.PersonListView.as_view(), name="home"),
+    path("", person_views.PersonList.as_view(), name="home"),
+    path("<int:pk>", person_views.PersonDetail.as_view(), name="detail"),
 ]

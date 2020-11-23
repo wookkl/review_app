@@ -1,11 +1,10 @@
 from django.http import Http404
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.shortcuts import render
 from movies import models as movie_models
 
 
-class MovieListView(ListView):
+class MovieList(ListView):
 
     """ Movie List View Definition """
 
@@ -17,10 +16,10 @@ class MovieListView(ListView):
 
     def get_context_data(self, **kwargs):
         try:
-            return super(MovieListView, self).get_context_data(**kwargs)
+            return super(MovieList, self).get_context_data(**kwargs)
         except Http404:
             self.kwargs["page"] = 1
-            return super(MovieListView, self).get_context_data(**kwargs)
+            return super(MovieList, self).get_context_data(**kwargs)
 
 
 class MovieDetail(DetailView):

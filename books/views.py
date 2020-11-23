@@ -4,7 +4,7 @@ from django.views.generic import DetailView
 from books import models as book_models
 
 
-class BookListView(ListView):
+class BookList(ListView):
 
     """ Book List View Definition """
 
@@ -16,10 +16,10 @@ class BookListView(ListView):
 
     def get_context_data(self, **kwargs):
         try:
-            return super(BookListView, self).get_context_data(**kwargs)
+            return super(BookList, self).get_context_data(**kwargs)
         except Http404:
             self.kwargs["page"] = 1
-            return super(BookListView, self).get_context_data(**kwargs)
+            return super(BookList, self).get_context_data(**kwargs)
 
 
 class BookDetail(DetailView):
