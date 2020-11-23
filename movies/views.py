@@ -1,5 +1,6 @@
 from django.http import Http404
 from django.views.generic import ListView
+from django.shortcuts import render
 from movies import models as movie_models
 
 
@@ -10,7 +11,7 @@ class MovieListView(ListView):
     model = movie_models.Movie
     paginate_by = 10
     paginate_orphans = 5
-    template_name = "movies/movies_list.html"
+    template_name = "movies/list.html"
     ordering = ("pk",)
 
     def get_context_data(self, **kwargs):
@@ -19,3 +20,10 @@ class MovieListView(ListView):
         except Http404:
             self.kwargs["page"] = 1
             return super(MovieListView, self).get_context_data(**kwargs)
+
+
+def movie_detail(request, pk):
+
+    """ Movie Detail View Definition """
+
+    return render(request, "movies/detail.html")
