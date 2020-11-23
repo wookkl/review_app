@@ -25,7 +25,7 @@ class MovieListView(ListView):
 
 class MovieDetail(DetailView):
 
-    """ Room Detail Definition """
+    """ Movie Detail Definition """
 
     model = movie_models.Movie
     template_name = "movies/detail.html"

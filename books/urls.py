@@ -5,4 +5,5 @@ app_name = "books"
 
 urlpatterns = [
     path("", book_views.BookListView.as_view(), name="home"),
+    path("<int:pk>/", book_views.BookDetail.as_view(), name="detail"),
 ]

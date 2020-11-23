@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block page_title %}
+    Book Home
+{% endblock page_title %}
+
+{% block content %}
+    <div>
+        {% if page_obj %}
+            <h1>Books</h1>
+            {% for book in page_obj %}
+              <a href="{% url 'books:detail' book.pk %}"><h3>{{book.title}} - {{book.year}}</h3></a>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div>
+      {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}">prev</a>
+      {% endif %}
+      Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+      {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">next</a>
+      {% endif %}
+    </div>
+{% endblock content %}

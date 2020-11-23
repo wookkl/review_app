@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block page_title %}
+    Detail Book
+{% endblock page_title %}
+
+{% block content %}
+    <h1>{{book.title}}</h1>
+    <h3>{{book.year}}</h3>
+    <img src="{{book.cover_image}}"/>
+
+    <h2>Category</h2>
+    <ul>
+        <li>{{book.category}}</li>
+    </ul>
+    <h2>Director</h2>
+    <ul>
+        <li>{{book.writer}}</li>
+    </ul>
+{% endblock content %}
