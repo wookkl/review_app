@@ -8,7 +8,7 @@
     <h3>{{person.kind}}</h3>
     <img src="{{person.photo}}"/>
     {% if user.is_staff %}
-        <div><a href="{% url 'people:edit' person.pk %}">Edit People</a></div>
+        <div><a href="{% url 'people:edit' person.pk%}">Edit Person</a></div>
     {% endif %}
         
 {% endblock content %}

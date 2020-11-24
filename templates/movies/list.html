@@ -4,21 +4,25 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div>
-        {% if page_obj %}
-            <h1>Movies</h1>
-            {% for movie in page_obj %}
-              <a href="{% url 'movies:detail' movie.pk %}"><h3>{{movie.title}} - {{movie.year}}</h3></a>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div>
-      {% if page_obj.has_previous %}
-        <a href="?page={{page_obj.previous_page_number}}">prev</a>
+
+  {% if user.is_staff %}
+    <div><a href="{% url 'movies:create' %}">Create Movie</a></div>
+  {% endif %}
+  <div>
+      {% if page_obj %}
+          <h1>Movies</h1>
+          {% for movie in page_obj %}
+            <a href="{% url 'movies:detail' movie.pk %}"><h3>{{movie.title}} - {{movie.year}}</h3></a>
+          {% endfor %}
       {% endif %}
-      Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
-      {% if page_obj.has_next %}
-        <a href="?page={{page_obj.next_page_number}}">next</a>
-      {% endif %}
-    </div>
+  </div>
+  <div>
+    {% if page_obj.has_previous %}
+      <a href="?page={{page_obj.previous_page_number}}">prev</a>
+    {% endif %}
+    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+    {% if page_obj.has_next %}
+      <a href="?page={{page_obj.next_page_number}}">next</a>
+    {% endif %}
+  </div>
 {% endblock content %}

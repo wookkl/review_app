@@ -4,21 +4,24 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div>
-        {% if page_obj %}
-            <h1>People</h1>
-            {% for person in page_obj %}
-              <a href="{% url 'people:detail' person.pk %}"><h3>{{person.name}}</h3></a>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div>
-    {% if page_obj.has_previous %}
-      <a href="?page={{page_obj.previous_page_number}}">prev</a>
-    {% endif %}
-    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
-    {% if page_obj.has_next %}
-      <a href="?page={{page_obj.next_page_number}}">next</a>
-    {% endif %}
-    </div>
+  {% if user.is_staff %}
+    <div><a href="{% url 'people:create' %}">Create People</a></div>
+  {% endif %}
+  <div>
+      {% if page_obj %}
+          <h1>People</h1>
+          {% for person in page_obj %}
+            <a href="{% url 'people:detail' person.pk %}"><h3>{{person.name}}</h3></a>
+          {% endfor %}
+      {% endif %}
+  </div>
+  <div>
+  {% if page_obj.has_previous %}
+    <a href="?page={{page_obj.previous_page_number}}">prev</a>
+  {% endif %}
+  Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+  {% if page_obj.has_next %}
+    <a href="?page={{page_obj.next_page_number}}">next</a>
+  {% endif %}
+  </div>
 {% endblock content %}

@@ -52,7 +52,7 @@ class PersonEdit(UpdateView):
             raise Http404()
 
 
-class PerosnCreate(CreateView):
+class PersonCreate(CreateView):
 
     """ Person Create View Definition """
 

@@ -16,4 +16,7 @@
     <ul>
         <li>{{book.writer}}</li>
     </ul>
+    {% if user.is_staff %}
+        <div><a href="{% url 'books:edit' book.pk%}">Edit Book</a></div>
+    {% endif %}
 {% endblock content %}

@@ -1,6 +1,8 @@
 from django.http import Http404
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from django.views.generic import CreateView
+from django.views.generic import UpdateView
 from books import models as book_models
 
 
@@ -28,3 +30,47 @@ class BookDetail(DetailView):
 
     model = book_models.Book
     template_name = "books/detail.html"
+
+
+class BookEdit(UpdateView):
+
+    """ Book Edit View Definition """
+
+    model = book_models.Book
+    template_name = "books/edit.html"
+    fields = (
+        "title",
+        "year",
+        "cover_image",
+        "category",
+        "writer",
+    )
+
+    def get_object(self, queryset=None):
+        book = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return book
+        else:
+            raise Http404()
+
+
+class BookCreate(CreateView):
+
+    """ Book Create View Definition """
+
+    model = book_models.Book
+    template_name = "books/create.html"
+    fields = (
+        "title",
+        "year",
+        "cover_image",
+        "category",
+        "writer",
+    )
+
+    def get_object(self, queryset=None):
+        book = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return book
+        else:
+            raise Http404()

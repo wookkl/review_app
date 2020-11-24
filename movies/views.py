@@ -1,6 +1,9 @@
 from django.http import Http404
 from django.views.generic import ListView
 from django.views.generic import DetailView
+from django.views.generic import CreateView
+from django.views.generic import UpdateView
+
 from movies import models as movie_models
 
 
@@ -28,3 +31,49 @@ class MovieDetail(DetailView):
 
     model = movie_models.Movie
     template_name = "movies/detail.html"
+
+
+class MovieEdit(UpdateView):
+
+    """ Movie Edit View Definition """
+
+    model = movie_models.Movie
+    template_name = "movies/edit.html"
+    fields = (
+        "title",
+        "year",
+        "cover_image",
+        "category",
+        "director",
+        "cast",
+    )
+
+    def get_object(self, queryset=None):
+        movie = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return movie
+        else:
+            raise Http404()
+
+
+class MovieCreate(CreateView):
+
+    """ Movie Create View Definition """
+
+    model = movie_models.Movie
+    template_name = "movies/create.html"
+    fields = (
+        "title",
+        "year",
+        "cover_image",
+        "category",
+        "director",
+        "cast",
+    )
+
+    def get_object(self, queryset=None):
+        movie = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return movie
+        else:
+            raise Http404()
