@@ -7,4 +7,8 @@
     <h1>{{person.name}}</h1>
     <h3>{{person.kind}}</h3>
     <img src="{{person.photo}}"/>
+    {% if user.is_staff %}
+        <div><a href="{% url 'people:edit' person.pk %}">Edit People</a></div>
+    {% endif %}
+        
 {% endblock content %}

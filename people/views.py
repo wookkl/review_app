@@ -1,5 +1,7 @@
 from django.http import Http404
 from django.views.generic import ListView
+from django.views.generic import UpdateView
+from django.views.generic import CreateView
 from django.views.generic import DetailView
 from people import models as person_models
 
@@ -28,3 +30,30 @@ class PersonDetail(DetailView):
 
     model = person_models.Person
     template_name = "people/detail.html"
+
+
+class PersonEdit(UpdateView):
+    model = person_models.Person
+    template_name = "people/edit.html"
+    fields = (
+        "name",
+        "kind",
+        "photo",
+    )
+
+    def get_object(self, queryset=None):
+        person = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return person
+        else:
+            raise Http404()
+
+
+class PerosnCreate(CreateView):
+    model = person_models.Person
+    template_name = "people/edit.html"
+    fields = (
+        "name",
+        "kind",
+        "photo",
+    )

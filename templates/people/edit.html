@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_title %}
+    Edit Person
+{% endblock page_title %}
+
+{% block content %}
+    <div>
+        {% include 'mixins/person_form.html' with form=form cta="Edit person"%}
+    </div>
+{% endblock content %}
