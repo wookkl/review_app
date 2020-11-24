@@ -33,6 +33,9 @@ class PersonDetail(DetailView):
 
 
 class PersonEdit(UpdateView):
+
+    """ Person Edit View Definition """
+
     model = person_models.Person
     template_name = "people/edit.html"
     fields = (
@@ -50,10 +53,20 @@ class PersonEdit(UpdateView):
 
 
 class PerosnCreate(CreateView):
+
+    """ Person Create View Definition """
+
     model = person_models.Person
-    template_name = "people/edit.html"
+    template_name = "people/create.html"
     fields = (
         "name",
         "kind",
         "photo",
     )
+
+    def get_object(self, queryset=None):
+        person = super().get_object(queryset=queryset)
+        if self.request.user.is_staff:
+            return person
+        else:
+            raise Http404()
