@@ -10,4 +10,5 @@ urlpatterns = [
     path("search/", core_views.SearchView, name="search"),
     path("login/", user_views.LoginView.as_view(), name="login"),
     path("logout/", user_views.log_out, name="logout"),
+    path("signup/", user_views.SignUpView.as_view(), name="signup"),
 ]
