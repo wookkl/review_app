@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
 from django.views.generic import DetailView
+from django.views.generic import UpdateView
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
@@ -68,3 +69,23 @@ class UserProfileView(DetailView):
     model = user_models.User
 
     context_object_name = "user_obj"
+
+
+class UpdateUserView(UpdateView):
+
+    """ Update User View Definition """
+
+    model = user_models.User
+    template_name = "users/update-profile.html"
+    fields = (
+        "first_name",
+        "last_name",
+        "bio",
+        "preference",
+        "language",
+        "fav_book_genre",
+        "fav_movie_genre",
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user

@@ -6,9 +6,14 @@
 
 {% block content %}
     <div>
-        {% include "mixins/user_avatar.html" with user=user_obj %}
-        <span>{{user_obj.first_name}}</span>
-        <span>{{user_obj.bio}}</span>
-        <a href = "#">Edit Profile</a>
+        <h1>{% include "mixins/user_avatar.html" with user=user_obj %}</h1>
+        <div>
+            <span>{{user_obj.first_name}}</span>
+            <span>{{user_obj.bio}}</span>
+        </div>
+        {% if user == user_obj %}
+            <a href = "{% url 'users:update' %}">Edit Profile</a>
+        {% endif %}
     </div>
+            
 {% endblock content %}
