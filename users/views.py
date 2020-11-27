@@ -4,10 +4,12 @@ from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import FormView
+from django.views.generic import DetailView
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
 from users import forms as user_forms
+from users import models as user_models
 
 
 class LoginView(View):
@@ -57,3 +59,12 @@ class SignUpView(FormView):
             login(self.request, user)
             return redirect(reverse("core:home"))
         return super().form_valid(form)
+
+
+class UserProfileView(DetailView):
+
+    """ User Profile View Definition """
+
+    model = user_models.User
+
+    context_object_name = "user_obj"

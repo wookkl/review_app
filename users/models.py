@@ -1,5 +1,6 @@
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
+from django.urls import reverse
 from django.db import models
 
 
@@ -44,3 +45,6 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,
         related_name="users_fav_movie",
     )
+
+    def get_absolute_url(self):
+        return reverse("users:profile", kwargs={"pk": self.pk})

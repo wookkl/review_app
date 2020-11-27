@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    {{user_obj.first_name}}'s Profile
+{% endblock page_title %}
+
+{% block content %}
+    <div>
+        {% include "mixins/user_avatar.html" with user=user_obj %}
+        <span>{{user_obj.first_name}}</span>
+        <span>{{user_obj.bio}}</span>
+        <a href = "#">Edit Profile</a>
+    </div>
+{% endblock content %}
