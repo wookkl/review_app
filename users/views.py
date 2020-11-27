@@ -1,3 +1,4 @@
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.shortcuts import reverse
@@ -78,6 +79,7 @@ class UpdateUserView(UpdateView):
     model = user_models.User
     template_name = "users/update-profile.html"
     fields = (
+        "email",
         "first_name",
         "last_name",
         "bio",
@@ -89,3 +91,16 @@ class UpdateUserView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+    def form_valid(self, form):
+        email = form.cleaned_data.get("email")
+        self.object.username = email
+        self.object.save()
+        return super().form_valid(form)
+
+
+class UpdatePasswordView(PasswordChangeView):
+
+    """ Update Password View Definition """
+
+    template_name = "users/update-password.html"

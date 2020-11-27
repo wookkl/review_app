@@ -8,6 +8,9 @@
     <form method="POST" action="{% url 'users:update' %}">
         {% csrf_token %}
         {{form.as_p}}
-        <input type="submit" value="Update"/>
+        <input type="submit" value="Update Profile"/>
     </form>
+    <div>
+        <a href="{% url 'users:password' %}">Change Password </a>
+    </div>
 {% endblock content %}
