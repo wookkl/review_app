@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+
 {% block page_title %}
     Home
 {% endblock page_title %}
@@ -9,7 +10,7 @@
             <div><a href="/movies/">all_movies</a></div>
             <h1>Lastest movies</h1>
             {% for movie in movies.object_list %}
-            <h3>{{movie}} - {{movie.year}}</h3>
+                <h3>{{movie}} - {{movie.year}}</h3>
             {% endfor %}
         {% endif %}
     </div>
@@ -19,7 +20,7 @@
             <div><a href="/books/">all_books</a></div>
             <h1>Lastest books</h1>
             {% for book in books.object_list %}
-            <h3>{{book}} - {{book.year}}</h3>
+                <h3>{{book}} - {{book.year}}</h3>
             {% endfor %}
         {% endif %}
     </div>
@@ -29,7 +30,7 @@
             <div><a href="/people/">all_people</a></div>
             <h1>Lastest people</h1>
             {% for person in people.object_list %}
-            <h3>{{person}}</h3>
+                <h3>{{person}}</h3>
             {% endfor %}
         {% endif %}
     </div>
