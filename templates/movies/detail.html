@@ -22,7 +22,5 @@
             <li>{{c}}</li>
         {% endfor %}
     </ul>
-    {% if user.is_staff %}
-        <div><a href="{% url 'movies:edit' movie.pk%}">Edit Movie</a></div>
-    {% endif %}
+    <div><a href="{% url 'movies:edit' movie.pk%}">Edit Movie</a></div>
 {% endblock content %}

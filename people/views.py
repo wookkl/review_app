@@ -4,6 +4,7 @@ from django.views.generic import UpdateView
 from django.views.generic import CreateView
 from django.views.generic import DetailView
 from people import models as person_models
+from users import mixins as user_mixins
 
 
 class PersonList(ListView):
@@ -14,7 +15,7 @@ class PersonList(ListView):
     paginate_by = 10
     paginate_orphans = 5
     template_name = "people/list.html"
-    ordering = ("pk",)
+    ordering = "-created_at"
 
     def get_context_data(self, **kwargs):
         try:
@@ -32,7 +33,7 @@ class PersonDetail(DetailView):
     template_name = "people/detail.html"
 
 
-class PersonEdit(UpdateView):
+class PersonEdit(user_mixins.LoggedInOnlyView, UpdateView):
 
     """ Person Edit View Definition """
 
@@ -44,15 +45,8 @@ class PersonEdit(UpdateView):
         "photo",
     )
 
-    def get_object(self, queryset=None):
-        person = super().get_object(queryset=queryset)
-        if self.request.user.is_staff:
-            return person
-        else:
-            raise Http404()
 
-
-class PersonCreate(CreateView):
+class PersonCreate(user_mixins.LoggedInOnlyView, CreateView):
 
     """ Person Create View Definition """
 
@@ -63,10 +57,3 @@ class PersonCreate(CreateView):
         "kind",
         "photo",
     )
-
-    def get_object(self, queryset=None):
-        person = super().get_object(queryset=queryset)
-        if self.request.user.is_staff:
-            return person
-        else:
-            raise Http404()

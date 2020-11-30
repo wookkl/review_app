@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from movies import models as movie_models
+from users import mixins as user_mixins
 
 
 class MovieList(ListView):
@@ -14,7 +15,7 @@ class MovieList(ListView):
     paginate_by = 10
     paginate_orphans = 5
     template_name = "movies/list.html"
-    ordering = ("pk",)
+    ordering = "-created"
 
     def get_context_data(self, **kwargs):
         try:
@@ -32,7 +33,7 @@ class MovieDetail(DetailView):
     template_name = "movies/detail.html"
 
 
-class MovieEdit(UpdateView):
+class MovieEdit(user_mixins.LoggedInOnlyView, UpdateView):
 
     """ Movie Edit View Definition """
 
@@ -47,15 +48,8 @@ class MovieEdit(UpdateView):
         "cast",
     )
 
-    def get_object(self, queryset=None):
-        movie = super().get_object(queryset=queryset)
-        if self.request.user.is_staff:
-            return movie
-        else:
-            raise Http404()
 
-
-class MovieCreate(CreateView):
+class MovieCreate(user_mixins.LoggedInOnlyView, CreateView):
 
     """ Movie Create View Definition """
 
@@ -69,10 +63,3 @@ class MovieCreate(CreateView):
         "director",
         "cast",
     )
-
-    def get_object(self, queryset=None):
-        movie = super().get_object(queryset=queryset)
-        if self.request.user.is_staff:
-            return movie
-        else:
-            raise Http404()

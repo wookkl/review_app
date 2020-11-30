@@ -4,6 +4,7 @@ from django.views.generic import DetailView
 from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from books import models as book_models
+from users import mixins as user_mixins
 
 
 class BookList(ListView):
@@ -14,7 +15,7 @@ class BookList(ListView):
     paginate_by = 10
     paginate_orphans = 5
     template_name = "books/list.html"
-    ordering = ("pk",)
+    ordering = "-created"
 
     def get_context_data(self, **kwargs):
         try:
@@ -32,7 +33,7 @@ class BookDetail(DetailView):
     template_name = "books/detail.html"
 
 
-class BookEdit(UpdateView):
+class BookEdit(user_mixins.LoggedInOnlyView, UpdateView):
 
     """ Book Edit View Definition """
 
@@ -54,7 +55,7 @@ class BookEdit(UpdateView):
             raise Http404()
 
 
-class BookCreate(CreateView):
+class BookCreate(user_mixins.LoggedInOnlyView, CreateView):
 
     """ Book Create View Definition """
 

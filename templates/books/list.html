@@ -5,9 +5,7 @@
 {% endblock page_title %}
 
 {% block content %}
-	{% if user.is_staff %}
-		<div><a href="{% url 'books:create' %}">Create Book</a></div>
-	{% endif %}
+	<div><a href="{% url 'books:create' %}">Create Book</a></div>
 	<div>
 		{% if page_obj %}
 			<h1>Books</h1>
