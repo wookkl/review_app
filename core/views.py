@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.shortcuts import redirect
 from people import models as person_models
 from movies import models as movie_models
 from books import models as book_models
