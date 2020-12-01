@@ -13,7 +13,7 @@ const css = () => {
         require("autoprefixer")
     ]))
     .pipe(minify())
-    .pipe(gulp.dest("static.css"));
+    .pipe(gulp.dest("static/css"));
 };
 
 exports.default = css;
