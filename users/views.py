@@ -10,6 +10,7 @@ from django.views.generic import UpdateView
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.contrib.auth import authenticate
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from users import forms as user_forms
 from users import models as user_models
