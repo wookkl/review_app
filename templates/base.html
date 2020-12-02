@@ -7,16 +7,12 @@
         <title>{% block page_title %}{% endblock page_title %} | Wookkl</title>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
-    <body>
-        <a href="{% url 'core:home' %}">Wookkl Media</a>
-        {% block search-bar %}
-            <form method="get" action="{% url 'core:search' %}">
-                <input name="category" placeholder="Search By Category" />
-            </form>
-        {% endblock search-bar %}
-        {% include "partials/nav.html" %}
-        {% block content %}
-        {% endblock content %}
+    <body class="bg-gray-400">
+        {% include "partials/header.html" %}
+        <div class="min-h-screen">
+            {% block content %}
+            {% endblock content %}
+        </div>
         {% include "partials/footer.html" %}
     </body>
 </html>

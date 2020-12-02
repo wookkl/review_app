@@ -1,0 +1,15 @@
+<header>
+  <div class="flex w-1/12 justify-between">
+    <div><a href="{% url 'core:home' %}">Home</a></div>
+    <div><a href="{% url 'core:search' %}">Search</a></div>
+  </div>
+  <div class="flex w-1/12 justify-between">
+    {% if user.is_authenticated %}
+      <div><a href="{{ user.get_absolute_url }}">Profile</a></div>
+      <div><a href="{% url 'core:logout' %}">Log out</a></div>
+    {% else %}
+      <div><a href="{% url 'core:login' %}">Log in</a></div>
+      <div><a href="{% url 'core:signup' %}">Sign up</a></div>
+    {% endif %}
+  </div>
+</header>

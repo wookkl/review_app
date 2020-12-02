@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
+header {
+  @apply flex justify-between px-12 py-5 bg-gray-800 text-white;
+}
 @tailwind utilities;
