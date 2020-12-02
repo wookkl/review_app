@@ -1,0 +1,6 @@
+header {
+  @apply flex justify-between h-14 w-full bg-gray-800 text-white fixed px-5;
+  a {
+    @apply mx-3 text-lg w-16 h-full flex items-center justify-center transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-110;
+  }
+}

@@ -5,33 +5,32 @@
 {% endblock page_title %}
 
 {% block content %}
-<div class="mt-32 text-gray-800">
-    <h1 class="text-4xl my-5">Movies</h1>
-    <div class="w-full grid grid-cols-4 gap-4">
+<div class="home">
+    <h1 class="home__title">Movies</h1>
+    <div class="home__content">
         {% if movies %}
             {% for movie in movies %}
                 {% include "mixins/movie_card.html" with movie=movie %}
             {% endfor %}
         {% endif %}
-        <a class="col-span-2 text-2xl p-3 bg-gray-400 rounded-xl flex justify-center items-center shadow-2xl" href="/movies/">see all movies</a>
+        <a href="/movies/">see all movies</a>
     </div>
-    <h1 class="text-4xl my-5">Books</h1>
-    <div class="w-full grid grid-cols-4 gap-4">
+    <h1 class="home__title">Books</h1>
+    <div class="home__content">
         {% if books %}
             {% for book in books %}
                 {% include "mixins/book_card.html" with book=book %}
             {% endfor %}
-            <a class="col-span-2 text-2xl p-3 bg-gray-400 rounded-xl flex justify-center items-center shadow-2xl"href="/books/">see all books</a>
+            <a href="/books/">see all books</a>
         {% endif %}
     </div>
-    <h1 class="text-4xl my-5">People</h1>
-    <div class="w-full grid grid-cols-4 gap-4">
+    <h1 class="home__title">People</h1>
+    <div class="home__content">
         {% if people %}
             {% for person in people %}
-            {% include "mixins/person_card.html" with person=person %}
-
+                {% include "mixins/person_card.html" with person=person %}
             {% endfor %}
-            <a class="col-span-2 text-2xl p-3 bg-gray-400 rounded-xl flex justify-center items-center shadow-2xl"href="/people/">see all people</a>
+            <a href="/people/">see all people</a>
         {% endif %}
     </div>
 </div>
