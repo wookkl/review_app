@@ -6,10 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block page_title %}{% endblock page_title %} | Wookkl</title>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="shortcut icon" href="{% static 'favicon/star.svg'%}" type="image/x-icon">
     </head>
-    <body class="bg-gray-400">
+    <body class="bg-gray-400 box-border">
         {% include "partials/header.html" %}
-        <div class="min-h-screen">
+        <div class="min-h-screen flex flex-col w-3/4 mx-auto items-center">
             {% block content %}
             {% endblock content %}
         </div>
