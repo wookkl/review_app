@@ -5,22 +5,33 @@
 {% endblock page_title %}
 
 {% block content %}
-    <h1>{{movie.title}}</h1>
-    <h3>{{movie.year}}</h3>
-    <img src="{{movie.cover_image}}"/>
-    <h2>Category</h2>
-    <ul>
-        <li>{{movie.category}}</li>
-    </ul>
-    <h2>Director</h2>
-    <ul>
-        <li>{{movie.director}}</li>
-    </ul>
-    <h2>Cast</h2>
-    <ul>
-        {% for c in movie.cast.all  %}
-            <li>{{c}}</li>
-        {% endfor %}
-    </ul>
-    <div><a href="{% url 'movies:edit' movie.pk%}">Edit Movie</a></div>
+    <div class="detail">
+        <img src="{{movie.cover_image.url}}"/>
+        <div class="detail__content">
+            <div class="detail__content-row">
+                <h1 class="text-3xl my-2">{{movie.title}}</h1>    
+            </div>
+            <div class="mb-8">
+                <span class="span__circle bg-blue-300 ">{{movie.year}}</span>
+            </div>
+            <div class="detail__content-row">
+                <span class="detail__content-title">Category</span>
+                <span class="span__circle bg-green-400 ">{{movie.category}}</span>
+            </div>
+            <div class="detail__content-row">
+                <span class="detail__content-title">Director</span>
+                <span class="span__circle bg-red-900 ">{{movie.director}}</span>
+            </div>
+            <div class="detail__content-row">
+                <span class="detail__content-title">Cast</span>
+                <div class="flex flex-wrap">
+                    {% for c in movie.cast.all  %}
+                        <span class="span__circle bg-yellow-400  mr-1 mb-1">{{c}}</span>
+                    {% endfor %}
+                </div>
+            </div>
+                <a href="{% url 'movies:edit' movie.pk%}">Edit Movie</a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

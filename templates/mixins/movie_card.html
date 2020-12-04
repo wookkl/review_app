@@ -1,4 +1,7 @@
-<div class="flex-1 h-64 shadow-2xl bg-white rounded-xl text-black font-light p-5">
-    <a class="block text-lg" href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a>
-    <span>{{movie.year}}</span>
+<div class="card">
+    <img src="{{movie.cover_image.url}}"/>
+    <div class="mx-3">
+        <a class="block text-md mb-2" href="{% url 'movies:detail' movie.pk %}">{{movie.title}}</a>
+        <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{movie.year}}</span>
+    </div>
 </div>

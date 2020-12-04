@@ -1,5 +1,5 @@
 .home {
-  @apply mt-32 text-gray-800;
+  @apply mt-32 text-gray-800 min-h-screen flex flex-col w-3/5 mx-auto justify-center;
 }
 .home__title {
   @apply text-4xl my-5 text-black;

@@ -1,0 +1,6 @@
+.card {
+  @apply flex-1 h-96 shadow-2xl bg-white rounded-xl text-black font-light;
+  > img {
+    @apply w-full h-72 rounded-xl rounded-b-none mb-2 bg-cover;
+  }
+}
