@@ -2,11 +2,11 @@
   @apply mt-32 text-gray-800;
 }
 .home__title {
-  @apply text-4xl my-5;
+  @apply text-4xl my-5 text-black;
 }
 .home__content {
   @apply w-full grid grid-cols-4 gap-4;
   > a {
-    @apply col-span-2 text-2xl p-3 bg-gray-400 rounded-xl flex justify-center items-center shadow-2xl;
+    @apply col-span-2 text-2xl p-3 bg-white rounded-xl flex justify-center items-center shadow-2xl;
   }
 }
