@@ -1,7 +1,7 @@
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" class="form">
     {% csrf_token %}
     {% for field in form %}
         {% include "mixins/input.html" with field=field %}
     {% endfor %}
-    <input type="submit" value="{{cta}}">
+    <input class="submit-btn" type="submit" value="{{cta}}">
 </form> 

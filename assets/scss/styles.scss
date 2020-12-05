@@ -2,10 +2,15 @@
 @tailwind components;
 @import "home.scss";
 
+/*    partials    */
 @import "partials/header.scss";
 
+/*    mixins    */
 @import "mixins/card.scss";
 @import "mixins/detail.scss";
+@import "mixins/input.scss";
 
+/*    user    */
 @import "users/detail.scss";
+
 @tailwind utilities;

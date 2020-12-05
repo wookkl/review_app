@@ -5,9 +5,11 @@
 {% endblock page_title %}
 
 {% block content %}
-    <form method="POST" action="{% url 'core:login' %}">
+    <form method="POST" action="{% url 'core:login' %}" class="form">
         {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="login"/>
+        {% for field in form %}
+                {% include "mixins/input.html" with field=field %}
+        {% endfor %}
+        <input class="submit-btn"type="submit" value="login"/>
     </form>
 {% endblock content %}
