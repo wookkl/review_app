@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+  {{category.name}}
+{% endblock page_title %}
+
+{% block content %}
+<div class="w-3/4 mx-auto mt-32">
+  <div class="m-1 mb-10">
+    {% if category.movies.count > 0 %}
+    <div class="flex items-center">
+      <h2 class="text-3xl mb-2">Movies</h2> 
+    </div>
+    <div class="w-full grid grid-cols-4 gap-4">
+      {% for movie in category.movies.all%}
+        {% include "mixins/movie_card.html" with movie=movie %}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if category.books.count > 0 %}
+    <div class="flex items-center mt-6">
+      <h2 class="text-3xl mb-2">Books</h2> 
+    </div>
+    <div class="w-full grid grid-cols-4 gap-4">
+      {% for book in category.books.all%}
+        {% include "mixins/book_card.html" with book=book %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock content %}

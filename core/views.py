@@ -2,9 +2,10 @@ from django.shortcuts import render
 from people import models as person_models
 from movies import models as movie_models
 from books import models as book_models
+from categories import models as category_models
 
 
-def HomeView(request):
+def home_view(request):
 
     """ Home View Definition """
 
@@ -23,8 +24,27 @@ def HomeView(request):
     )
 
 
-def SearchView(request):
+def search_view(request):
 
-    """ Search View Definition """
+    term = request.GET.get("search")
 
-    return render(request, "search.html")
+    movies = books = people = None
+
+    if term:
+        movies = movie_models.Movie.objects.filter(title__startswith=term)
+        books = book_models.Book.objects.filter(title__startswith=term)
+        people = person_models.Person.objects.filter(name__startswith=term)
+
+        print(movies, books, people)
+
+    return render(
+        request,
+        "search.html",
+        {
+            "categories": category_models.Category.objects.all(),
+            "movies": movies,
+            "books": books,
+            "term": term,
+            "people": people,
+        },
+    )

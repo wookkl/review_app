@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @import "home.scss";
+@import "search.scss";
 
 /*    partials    */
 @import "partials/header.scss";
@@ -13,4 +14,5 @@
 /*    user    */
 @import "users/detail.scss";
 
+/*    search    */
 @tailwind utilities;

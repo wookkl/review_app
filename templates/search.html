@@ -5,5 +5,42 @@
 {% endblock page_title %}
 
 {% block content %}
-    This is Search page.
+<div class="search">
+    <form method="GET" class="search__form">  
+        <input type="text" placeholder="Search Movie, Book or Person" name="search" />
+        <button>Search</button>
+    </form>
+    <span class="search__categories-title">Categories</span>
+    <div class="search__categories-content">
+        {% for category in categories %}
+            <a href="{% url 'categories:detail' category.pk %}">
+                {{category.name}}
+            </a>
+        {% endfor %}
+    </div>
+    {% if movies %}
+        <h2 class="search__result-title">Movies</h2>
+        <div class="search__result">
+            {% for movie in movies.all%}
+                {% include "mixins/movie_card.html" with movie=movie %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if books %}
+        <h2 class="search__result-title">Books</h2>
+        <div class="search__result">
+            {% for book in books.all%}
+                {% include "mixins/book_card.html" with book=book %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if people %}
+        <h2 class="search__result-title">People</h2>
+        <div class="search__result">
+            {% for person in people.all%}
+                {% include "mixins/person_card.html" with person=person %}
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
 {% endblock content %}
