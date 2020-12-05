@@ -6,6 +6,7 @@
   <div class="flex w-1/6 justify-evenly">
     {% if user.is_authenticated %}
       <a href="{{ user.get_absolute_url }}">Profile</a>
+      <a href="{% url 'favs:see-favs' %}">Favs</a>
       <a href="{% url 'core:logout' %}">Log out</a>
     {% else %}
       <a href="{% url 'core:login' %}">Log in</a>

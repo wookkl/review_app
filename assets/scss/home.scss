@@ -1,12 +1,14 @@
 .home {
   @apply mt-32 text-gray-800 min-h-screen flex flex-col w-3/5 mx-auto justify-center;
 }
+
 .home__title {
   @apply text-4xl my-5 text-black;
 }
+
 .home__content {
   @apply w-full grid grid-cols-4 gap-4;
-  > a:last-child {
-    @apply col-span-2 text-2xl p-3 bg-white rounded-xl flex justify-center items-center shadow-2xl;
-  }
+}
+.home__more-btn {
+  @apply col-span-2 text-2xl p-3 bg-white rounded-xl flex justify-center items-center shadow-2xl;
 }

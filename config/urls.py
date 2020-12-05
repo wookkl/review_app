@@ -25,6 +25,7 @@ urlpatterns = [
     path("movies/", include("movies.urls", namespace="movies")),
     path("books/", include("books.urls", namespace="books")),
     path("users/", include("users.urls", namespace="users")),
+    path("favs/", include("favs.urls", namespace="favs")),
     path("search/", include("core.urls", namespace="search")),
     path("categories/", include("categories.urls", namespace="categories")),
     path("people/", include("people.urls", namespace="people")),

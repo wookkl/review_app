@@ -13,7 +13,7 @@
                 {% include "mixins/movie_card.html" with movie=movie %}
             {% endfor %}
         {% endif %}
-        <a href="/movies/">see all movies</a>
+        <a class="home__more-btn" href="/movies/">see all movies</a>
     </div>
     <h1 class="home__title">Books</h1>
     <div class="home__content">
@@ -21,7 +21,7 @@
             {% for book in books %}
                 {% include "mixins/book_card.html" with book=book %}
             {% endfor %}
-            <a href="/books/">see all books</a>
+            <a class="home__more-btn" href="/books/">see all books</a>
         {% endif %}
     </div>
     <h1 class="home__title">People</h1>
@@ -30,7 +30,7 @@
             {% for person in people %}
                 {% include "mixins/person_card.html" with person=person %}
             {% endfor %}
-            <a href="/people/">see all people</a>
+            <a class="home__more-btn" href="/people/">see all people</a>
         {% endif %}
     </div>
 </div>

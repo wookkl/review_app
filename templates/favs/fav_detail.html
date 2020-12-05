@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+  {{user.first_name}}'s Favourites
+{% endblock page_title %}
+
+
+{% block content %}
+<div class="container-md mx-auto w-full flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-4 mt-16">
+      <span class="text-center text-3xl">{{user.first_name}}'s Favourites</span>   
+<div class="pt-6 ">
+	<div class="text-3xl mb-8">Movies</div>
+  <div class="flex item-center flex-wrap">
+  {% for movie in user.favs.movies.all %}
+    {% include "mixins/movie_card.html" with movie=movie %}
+	{% endfor %}
+  </div>
+	<hr />
+</div>
+<div class="pt-6">
+	<div class="text-3xl mb-8">Books</div>
+  <div class="flex item-center flex-wrap">
+    {% for book in user.favs.book.all %}
+      {% include "mixins/book_card.html" with book=book %}
+    {% endfor %}
+  </div>
+	<hr />
+</div>
+</div>
+{% endblock content %} 
+
