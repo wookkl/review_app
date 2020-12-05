@@ -43,6 +43,8 @@ class Movie(TimeStampedModel):
                 for review in all_reviews:
                     all_ratings += review.rating
                 return round(all_ratings / len(all_reviews), 1)
+            else:
+                return 0
         except models.ObjectDoesNotExist:
             return 0
 

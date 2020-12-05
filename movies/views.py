@@ -5,6 +5,7 @@ from django.views.generic import CreateView
 from django.views.generic import UpdateView
 from movies import models as movie_models
 from users import mixins as user_mixins
+from reviews import forms as review_forms
 
 
 class MovieList(ListView):
@@ -31,6 +32,11 @@ class MovieDetail(DetailView):
 
     model = movie_models.Movie
     template_name = "movies/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = review_forms.CreateReviewForm()
+        return context
 
 
 class MovieEdit(user_mixins.LoggedInOnlyView, UpdateView):

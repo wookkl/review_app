@@ -48,16 +48,39 @@
             </div>
         </div>
     </div>
-    <div class="reviews__box flex flex-col">
-        <h2 class="text-2xl">
-            Reviews
-        </h2>
+    <div class="reviews__box flex flex-col items-start">
+        <div class="flex w-full flex-col items-center">
+            <h2 class="text-2xl">Reviews</h2>
+            <div class="flex items-center text-red-300">
+                <div class="mr-4">
+                    <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
+                    <span class="font-bold text-xl">{{movie.rating}}</span>
+                </div>
+                <div>
+                    <span class="font-bold text-xl ">{{movie.reviews.count}}</span>
+                    <span class="text-xl">review{{movie.reviews.count|pluralize}}</span>
+                </div>
+            </div>
+        </div>
         {% for review in movie.reviews.all %}
-            <div class="review">
-                {{review.created_by}}
-                {{review.text}}
-                {{review.rating}}
+            <div class="mb-10 mx-5">
+                <div class="flex items-center mb-3">
+                    <div class="user__avatar w-12 h-12 text-xl relative mr-4">
+                        <span class="text-center">{{review.created_by.first_name|first}}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-medium">{{review.created_by.first_name}}</span>
+                        <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
+                    </div>
+                </div>
+                <p>{{review.text}}</p>
             </div>
         {% endfor %}
+        <div class="flex w-full flex-col items-center">
+            <form class="w-1/2" action="{% url 'reviews:create' movie.pk %}?type=movie" method="POST">
+                {% csrf_token %}
+                {% include 'mixins/form.html' with form=form cta="Submit Review"%}
+            </form>
+        </div>
     </div>
 {% endblock content %}
