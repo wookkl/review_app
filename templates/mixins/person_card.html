@@ -1,7 +1,7 @@
-<div class="card">
+<a href="{% url 'people:detail' person.pk %}" class="card">
     <img src="{{person.photo.url}}"/>
     <div class="mx-3">
-        <a class="block text-md mb-2" href="{% url 'people:detail' person.pk %}">{{person.name}}</a>
+        <span class="block text-md mb-2">{{person.name}}</span>
         <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{person.kind}}</span>
     </div>
-</div>
+</a>

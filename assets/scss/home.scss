@@ -6,7 +6,7 @@
 }
 .home__content {
   @apply w-full grid grid-cols-4 gap-4;
-  > a {
+  > a:last-child {
     @apply col-span-2 text-2xl p-3 bg-white rounded-xl flex justify-center items-center shadow-2xl;
   }
 }

@@ -1,7 +1,7 @@
-<div class="card">
+<a href="{% url 'books:detail' book.pk %}" class="card">
     <img src="{{book.cover_image.url}}"/>
     <div class="mx-3">
-        <a class="block text-md mb-2" href="{% url 'books:detail' book.pk %}">{{book.title}}</a>
+        <span class="block text-md mb-2">{{book.title}}</span>
         <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{book.year}}</span>
     </div>
-</div>
+</a>
