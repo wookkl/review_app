@@ -1,0 +1,15 @@
+.user__detail {
+  @apply w-1/3 mt-64 mx-auto flex flex-col justify-center items-center shadow-xl rounded-2xl p-8 relative;
+}
+.user__avatar {
+  @apply text-4xl bg-blue-300 text-white rounded-full shadow-lg w-24 h-24 flex items-center justify-center absolute;
+}
+.user__info {
+  @apply w-full mt-10 mb-5 text-gray-700 font-light;
+}
+.user__info-row {
+  @apply mb-4;
+  > span:first-child {
+    @apply text-2xl mb-1 block;
+  }
+}

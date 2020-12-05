@@ -5,14 +5,36 @@
 {% endblock page_title %}
 
 {% block content %}
-    <div>
-        <h1>{% include "mixins/user_avatar.html" with user=user_obj %}</h1>
-        <div>
-            <span>{{user_obj.first_name}}</span>
-            <span>{{user_obj.bio}}</span>
+    <div class="user__detail">
+        <div class="user__avatar" style="top: -24px;">
+            <span class="text-center">{{user_obj.first_name|first}}</span>
         </div>
-        {% if user == user_obj %}
-            <a href = "{% url 'users:update' %}">Edit Profile</a>
-        {% endif %}
-    </div>       
+        <div class="user__info">
+            <div class="user__info-row">
+                <span>Bio</span>
+                <span>{{user_obj.bio}}</span>
+            </div>
+            <div class="user__info-row">
+                <span>Preference</span>
+                <span>{{user_obj.preference|capfirst}}</span>
+            </div>
+            <div class="user__info-row">
+                <span>Language</span>
+                <span>{{user_obj.language|capfirst}}</span>
+            </div>
+            <div class="user__info-row">
+                {% if user_obj.fav_movie_cat %}
+                    <span>Favourite Movie Category</span>
+                    <span>{{user_obj.fav_movie_cat}}</span>
+                {% endif %}
+            </div>
+            <div class="user__info-row">
+                {% if user_obj.fav_book_cat %}
+                    <span>Favourite Book Category</span>
+                    <span>{{user_obj.fav_book_cat}}</span> 
+                {% endif %}
+            </div>
+        </div>
+        <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
+    </div>  
 {% endblock content %}

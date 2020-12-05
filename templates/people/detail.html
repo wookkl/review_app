@@ -12,7 +12,6 @@
                 <h1 class="text-3xl my-2">{{person.name}}</h1>    
                 <span class="span__circle bg-blue-300 ">{{person.kind}}</span>
             </div>
-                
             <div class="detail__content-row">
                 <span class="detail__content-title">
                     {% if person.kind == "actor" and person.casted_movies.count > 0 %}

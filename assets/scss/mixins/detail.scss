@@ -1,7 +1,7 @@
 .detail {
-  @apply w-1/2 flex mx-auto mt-32 rounded-lg shadow-md;
+  @apply w-1/2 flex mx-auto mt-32 rounded-lg shadow-md items-center;
   img {
-    @apply rounded-lg rounded-r-none mr-5 w-64 h-full;
+    @apply w-72 h-96 shadow-lg m-6;
   }
 }
 

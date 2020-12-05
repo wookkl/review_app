@@ -1,8 +1,11 @@
 @tailwind base;
 @tailwind components;
 @import "home.scss";
+
 @import "partials/header.scss";
+
 @import "mixins/card.scss";
 @import "mixins/detail.scss";
 
+@import "users/detail.scss";
 @tailwind utilities;
