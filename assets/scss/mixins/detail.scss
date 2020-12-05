@@ -1,16 +1,16 @@
 .detail {
-  @apply w-1/2 flex mx-auto mt-32 rounded-lg shadow-md items-center;
+  @apply w-1/3 flex mx-auto mt-32 rounded-lg shadow-md items-center flex-col justify-center;
   img {
-    @apply w-72 h-96 shadow-lg m-6;
+    @apply w-72 h-96 shadow-lg mt-3 block;
   }
 }
 
 .detail__content {
-  @apply w-full flex flex-col justify-between;
+  @apply w-full flex flex-col justify-between ml-10;
 }
 
 .detail__content-row {
-  @apply mb-2;
+  @apply mb-3;
 }
 
 .detail__content-title {
