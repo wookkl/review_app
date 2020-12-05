@@ -29,6 +29,7 @@ class Movie(TimeStampedModel):
     )
     cast = models.ManyToManyField(
         "people.Person",
+        related_name="casted_movies",
     )
 
     def __str__(self):

@@ -5,16 +5,24 @@
 {% endblock page_title %}
 
 {% block content %}
-    <h1>{{book.title}}</h1>
-    <h3>{{book.year}}</h3>
-    <img src="{{book.cover_image}}"/>
-    <h2>Category</h2>
-    <ul>
-        <li>{{book.category}}</li>
-    </ul>
-    <h2>Director</h2>
-    <ul>
-        <li>{{book.writer}}</li>
-    </ul>
-    <div><a href="{% url 'books:edit' book.pk%}">Edit Book</a></div>
+    <div class="detail">
+        <img src="{{book.cover_image.url}}"/>
+        <div class="detail__content">
+            <div class="detail__content-row mb-8">
+                <h1 class="text-3xl my-2">{{book.title}}</h1>    
+                <span class="span__circle bg-blue-300 ">{{book.year}}</span>
+            </div>
+            <div class="detail__content-row">
+                <span class="detail__content-title">Category</span>
+                <span class="span__circle bg-green-400 ">{{book.category}}</span>
+            </div>
+            <div class="detail__content-row">
+                <span class="detail__content-title">Writer</span>
+                <span class="span__circle bg-red-900 ">{{book.writer}}</span>
+            </div>
+            <div class="detail__content-row text-center w-full">
+                <a class="detail__edit" href="{% url 'books:edit' book.pk%}">Edit Book</a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

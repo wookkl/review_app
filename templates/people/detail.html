@@ -5,8 +5,43 @@
 {% endblock page_title %}
 
 {% block content %}
-    <h1>{{person.name}}</h1>
-    <h3>{{person.kind}}</h3>
-    <img src="{{person.photo}}"/>
-    <div><a href="{% url 'people:edit' person.pk%}">Edit Person</a></div>
+    <div class="detail">
+        <img src="{{person.photo.url}}"/>
+        <div class="detail__content">
+            <div class="detail__content-row mb-8">
+                <h1 class="text-3xl my-2">{{person.name}}</h1>    
+                <span class="span__circle bg-blue-300 ">{{person.kind}}</span>
+            </div>
+                
+            <div class="detail__content-row">
+                <span class="detail__content-title">
+                    {% if person.kind == "actor" and person.casted_movies.count > 0 %}
+                        Casted Movies
+                    {% elif person.kind == "director" and person.movies.count > 0 %}
+                        Directed Movies
+                    {% elif person.kind == "writer" and person.books.count > 0%}
+                        Writed Books
+                    {% endif %}
+                </span>
+                <div class="flex flex-wrap">
+                    {% if person.kind == "actor"  %}
+                        {% for c in person.casted_movies.all %}
+                            <a href="{% url 'movies:detail' c.pk %}"class="span__circle bg-yellow-400  mr-1 mb-1">{{c}}</a>
+                        {% endfor %}
+                    {% elif person.kind == "director" %}
+                        {% for c in person.movies.all  %}
+                            <a href="{% url 'movies:detail' c.pk %}"class="span__circle bg-yellow-400  mr-1 mb-1">{{c}}</a>
+                        {% endfor %}
+                    {% elif person.kind == "writer"%}
+                        {% for c in person.books.all  %}
+                            <a href="{% url 'books:detail' c.pk %}"class="span__circle bg-yellow-400  mr-1 mb-1">{{c}}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="detail__content-row text-center">
+                <a class="detail__edit" href="{% url 'people:edit' person.pk%}">Edit person</a>
+            </div>
+        </div>
+    </div>
 {% endblock content %}

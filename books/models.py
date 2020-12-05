@@ -25,6 +25,7 @@ class Book(TimeStampedModel):
     writer = models.ForeignKey(
         "people.Person",
         on_delete=models.CASCADE,
+        related_name="books",
     )
 
     def __str__(self):

@@ -8,10 +8,8 @@
     <div class="detail">
         <img src="{{movie.cover_image.url}}"/>
         <div class="detail__content">
-            <div class="detail__content-row">
+            <div class="detail__content-row mb-8">
                 <h1 class="text-3xl my-2">{{movie.title}}</h1>    
-            </div>
-            <div class="mb-8">
                 <span class="span__circle bg-blue-300 ">{{movie.year}}</span>
             </div>
             <div class="detail__content-row">
@@ -30,7 +28,8 @@
                     {% endfor %}
                 </div>
             </div>
-                <a href="{% url 'movies:edit' movie.pk%}">Edit Movie</a>
+            <div class="detail__content-row text-center">
+                <a class="detail__edit" href="{% url 'movies:edit' movie.pk%}">Edit Movie</a>
             </div>
         </div>
     </div>

@@ -1,11 +1,12 @@
 .detail {
   @apply w-1/2 flex mx-auto mt-32 rounded-lg shadow-md;
   img {
-    @apply rounded-lg rounded-r-none mr-5;
+    @apply rounded-lg rounded-r-none mr-5 w-64 h-full;
   }
 }
 
 .detail__content {
+  @apply w-full flex flex-col justify-between;
 }
 
 .detail__content-row {
@@ -18,4 +19,8 @@
 
 .span__circle {
   @apply py-1 px-2 rounded-full text-white text-base;
+}
+
+.detail__edit {
+  @apply text-red-400 text-2xl text-center;
 }
