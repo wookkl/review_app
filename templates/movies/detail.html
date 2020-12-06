@@ -50,7 +50,7 @@
     </div>
     <div class="reviews__box flex flex-col items-start">
         <div class="flex w-full flex-col items-center">
-            <h2 class="text-2xl">Reviews</h2>
+            <h2 class="text-3xl">Reviews</h2>
             <div class="flex items-center text-red-300">
                 <div class="mr-4">
                     <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
@@ -64,23 +64,29 @@
         </div>
         {% for review in movie.reviews.all %}
             <div class="mb-10 mx-5">
-                <div class="flex items-center mb-3">
-                    <div class="user__avatar w-12 h-12 text-xl relative mr-4">
-                        <span class="text-center">{{review.created_by.first_name|first}}</span>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center mb-3">
+                        <div class="user__avatar w-12 h-12 text-xl relative mr-4">
+                            <span class="text-center">{{review.created_by.first_name|first}}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-medium">{{review.created_by.first_name}}</span>
+                            <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
+                        </div>
                     </div>
-                    <div class="flex flex-col">
-                        <span class="font-medium">{{review.created_by.first_name}}</span>
-                        <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
-                    </div>
+                    {% if review.created_by == user %}
+                        <div>
+                            <a class="span__circle bg-gray-400 hover:bg-gray-700 ml-4" href="{% url 'reviews:delete' review.pk %}">delete</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <p>{{review.text}}</p>
             </div>
         {% endfor %}
-        <div class="flex w-full flex-col items-center">
-            <form class="w-1/2" action="{% url 'reviews:create' movie.pk %}?type=movie" method="POST">
-                {% csrf_token %}
-                {% include 'mixins/form.html' with form=form cta="Submit Review"%}
-            </form>
-        </div>
+        {% if user.is_authenticated %}
+            <div class="w-full text-center text-blue-400 mb-5">
+                <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=movie">Write Review</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}

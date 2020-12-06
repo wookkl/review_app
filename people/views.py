@@ -15,7 +15,7 @@ class PersonList(ListView):
     paginate_by = 10
     paginate_orphans = 5
     template_name = "people/list.html"
-    ordering = "-created_at"
+    ordering = "-created"
 
     def get_context_data(self, **kwargs):
         try:

@@ -32,6 +32,12 @@ class BookDetail(DetailView):
     model = book_models.Book
     template_name = "books/detail.html"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        pk = self.kwargs["pk"]
+        context["pk"] = pk
+        return context
+
 
 class BookEdit(user_mixins.LoggedInOnlyView, UpdateView):
 

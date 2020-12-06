@@ -25,7 +25,7 @@
             </div>
             <div class="detail__content-row">
                 <span class="detail__content-title">Rating</span>
-                <span class="span__circle bg-pink-400">{{movie.rating}}</span>
+                <span class="span__circle bg-pink-400">{{book.rating}}</span>
             </div>
             <div class="detail__content-row">
                 <span class="detail__content-title">Category</span>
@@ -40,12 +40,38 @@
             </div>
         </div>
     </div>
-    <div class="reviews__box">
-        <span>
-            Reviews
-        </span>
-        {% for review in book.reviews %}
-          {{review}}
+    <div class="reviews__box flex flex-col items-start">
+        <div class="flex w-full flex-col items-center">
+            <h2 class="text-2xl">Reviews</h2>
+            <div class="flex items-center text-red-300">
+                <div class="mr-4">
+                    <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
+                    <span class="font-bold text-xl">{{book.rating}}</span>
+                </div>
+                <div>
+                    <span class="font-bold text-xl ">{{book.reviews.count}}</span>
+                    <span class="text-xl">review{{book.reviews.count|pluralize}}</span>
+                </div>
+            </div>
+        </div>
+        {% for review in book.reviews.all %}
+            <div class="mb-10 mx-5">
+                <div class="flex items-center mb-3">
+                    <div class="user__avatar w-12 h-12 text-xl relative mr-4">
+                        <span class="text-center">{{review.created_by.first_name|first}}</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-medium">{{review.created_by.first_name}}</span>
+                        <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
+                    </div>
+                </div>
+                <p>{{review.text}}</p>
+            </div>
         {% endfor %}
+        {% if user.is_authenticated %}
+            <div class="w-full text-center text-blue-400 mb-5">
+                <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=book">Write Review</a>
+            </div>
+        {% endif %}
     </div>
 {% endblock content %}

@@ -7,7 +7,7 @@ class CreateReviewForm(forms.ModelForm):
     """ Create Review Form Definition """
 
     rating = forms.IntegerField(min_value=0, max_value=10)
-    text = forms.CharField(widget=forms.TextInput)
+    text = forms.CharField(widget=forms.Textarea)
 
     class Meta:
         model = models.Review

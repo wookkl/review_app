@@ -6,7 +6,7 @@
     <div class="mx-3">
         <div class="flex justify-between">
             <a href="{% url 'movies:detail' movie.pk %}">
-                <span class="block text-md mb-2">{{movie.title}}</span>
+                <span class="block text-sm mb-2">{{movie.title}}</span>
             </a>
             {% if user.is_authenticated %}
                 {% on_favs "movie" movie as on_favs_boolean %}
@@ -17,6 +17,9 @@
                 {% endif %}
             {% endif %}
         </div>
-        <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{movie.year}}</span>
+        <div class="flex w-full justify-between items-center">
+            <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{movie.year}}</span>
+            <span class="text-red-400 text-lg"><i class="fas fa-star mr-1"></i>{{movie.rating}}</span>
+        </div>
     </div>
 </div>
