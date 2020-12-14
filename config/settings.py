@@ -24,8 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "ux)+!7p1tdy_3exvc#=td5017)a*p8(9bl(md1$6k&w*35uo9c"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
-
+DEBUG = bool(os.environ.get("DEBUG"))
 ALLOWED_HOSTS = []
 
 
@@ -100,10 +99,10 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "HOST": "review-app.chyhipvjbrle.ap-northeast-2.rds.amazonaws.com",
-            "NAME": "review-app",
-            "USER": "postgresql",
-            "PASSWORD": "reviewapp123",
+            "HOST": os.environ.get("RDS_HOST"),
+            "NAME": os.environ.get("RDS_NAME"),
+            "USER": os.environ.get("RDS_USER"),
+            "PASSWORD": os.environ.get("RDS_PASSWORD"),
             "PORT": "5432",
         }
     }
