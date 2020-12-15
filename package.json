@@ -1,15 +1,15 @@
 {
-  "name": "movie_review",
+  "name": "review_app",
   "version": "1.0.0",
   "description": "nomadcoder challenge project for study",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wookkl/movie_review.git"
+    "url": "git+https://github.com/wookkl/review_app.git"
   },
   "scripts": {
     "css": "gulp"
   },
-  "homepage": "https://github.com/wookkl/movie_review#readme",
+  "homepage": "https://github.com/wookkl/review_app#readme",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-csso": "^4.0.1",

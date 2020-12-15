@@ -21,8 +21,8 @@
             {% for book in books %}
                 {% include "mixins/book_card.html" with book=book %}
             {% endfor %}
-            <a class="home__more-btn" href="/books/">see all books</a>
         {% endif %}
+        <a class="home__more-btn" href="/books/">see all books</a>
     </div>
     <h1 class="home__title">People</h1>
     <div class="home__content">
@@ -30,8 +30,8 @@
             {% for person in people %}
                 {% include "mixins/person_card.html" with person=person %}
             {% endfor %}
-            <a class="home__more-btn" href="/people/">see all people</a>
         {% endif %}
+        <a class="home__more-btn" href="/people/">see all people</a>
     </div>
 </div>
 {% endblock content %}
