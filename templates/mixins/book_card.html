@@ -2,7 +2,11 @@
 
 <div class="card">
     <a href="{% url 'books:detail' book.pk %}">
-        <img class="cover-image" src="{{book.cover_image.url}}" />
+        {% if book.cover_image %}
+            <img class="cover-image" src="{{book.cover_image.url}}" />
+        {% else %}
+            <div class="cover-image"><span>No Image</span></div>
+        {% endif %}
     </a>
     <div class="mx-3">
         <div class="flex justify-between">
@@ -19,7 +23,7 @@
             {% endif %}
         </div>
         <div class="flex w-full justify-between items-center">
-            <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{book.year}}</span>
+            <span class="px-2 py-1 rounded-full bg-blue-300 text-white text-sm">{{book.year}}</span>
             <span class="text-red-400 text-lg"><i class="fas fa-star mr-1"></i>{{book.rating}}</span>
         </div>
     </div>

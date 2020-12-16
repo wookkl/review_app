@@ -7,7 +7,11 @@
 
 {% block content %}
     <div class="detail">
-        <img src="{{book.cover_image.url}}"/>
+        {% if book.cover_image %}
+            <img src="{{book.cover_image.url}}"/>
+        {% else %}
+            <div class="detail__no-image"><span>No Image</span></div>            
+        {% endif %}
         <div class="detail__content">
             <div class="detail__content-row mb-8">
                 <div class="flex justify-start items-center text-3xl">

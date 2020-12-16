@@ -1,9 +1,13 @@
 <div class="card">
     <a href="{% url 'people:detail' person.pk %}">
-        <img class="cover-image" src="{{person.photo.url}}"/>
+        {% if person.photo %}
+            <img class="cover-image" src="{{person.photo.url}}"/>
+        {% else %}
+            <div class="cover-image"><span>No Image</span></div>
+        {% endif %}
         <div class="mx-3">
             <span class="block text-md mb-2">{{person.name}}</span>
-            <span class="p-2 rounded-full bg-blue-300 text-white text-sm">{{person.kind}}</span>
+            <span class="px-2 py-1 rounded-full bg-blue-300 text-white text-sm">{{person.kind}}</span>
         </div>
     </a>
 </div>

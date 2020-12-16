@@ -2,5 +2,5 @@
   @apply flex-1 h-96 shadow-2xl bg-white rounded-xl text-black font-light block;
 }
 .cover-image {
-  @apply w-full h-72 rounded-xl rounded-b-none mb-2 bg-cover;
+  @apply w-full h-72 rounded-xl rounded-b-none mb-2 bg-cover flex justify-center items-center text-2xl text-blue-700;
 }

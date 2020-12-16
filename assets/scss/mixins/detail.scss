@@ -24,3 +24,6 @@
 .detail__edit {
   @apply text-red-400 text-2xl text-center;
 }
+.detail__no-image {
+  @apply text-blue-700 text-2xl text-center w-72 h-96 shadow-lg mt-3 flex items-center justify-center;
+}

@@ -6,7 +6,11 @@
 
 {% block content %}
     <div class="detail">
-        <img src="{{person.photo.url}}"/>
+        {% if person.photo %}
+            <img src="{{person.photo.url}}"/>
+        {% else %}
+            <div class="detail__no-image"><span>No Image</span></div>            
+        {% endif %}
         <div class="detail__content">
             <div class="detail__content-row mb-8">
                 <h1 class="text-3xl my-2">{{person.name}}</h1>    
