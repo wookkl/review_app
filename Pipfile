@@ -26,6 +26,7 @@ update = "*"
 sentry-sdk = "*"
 django-storages = "*"
 boto3 = "*"
+django-imagekit = "*"
 
 [requires]
 python_version = "3.8"

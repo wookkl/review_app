@@ -26,14 +26,15 @@ def toggle_favs(request, pk):
             return redirect(prev_url)
     elif _type == "book":
         try:
-            book = book_models.book.objects.get(pk=pk)
-        except book_models.book.DoesNotExist:
+            book = book_models.Book.objects.get(pk=pk)
+        except book_models.Book.DoesNotExist:
             book = None
         if book is not None:
             if action == "add":
                 favlist.books.add(book)
+                print(favlist)
             elif action == "delete":
-                favlist.books.delete(book)
+                favlist.books.remove(book)
         return redirect(prev_url)
 
 

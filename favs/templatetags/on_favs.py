@@ -17,4 +17,4 @@ def on_favs(context, _type, book_or_movie):
         if _type == "movie":
             return book_or_movie in fav.movies.all()
         elif _type == "book":
-            return book_or_movie in fav.movies.all()
+            return book_or_movie in fav.books.all()

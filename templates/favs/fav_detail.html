@@ -6,21 +6,21 @@
 
 
 {% block content %}
-<div class="container-md mx-auto w-full flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-16">
+<div class="container-md mx-auto w-4/5 flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-16">
       <span class="text-center text-3xl">{{user.first_name}}'s Favourites</span>   
 <div class="pt-6 ">
 	<div class="text-3xl mb-8">Movies</div>
-  <div class="flex item-center flex-wrap">
-  {% for movie in user.favs.movies.all %}
-    {% include "mixins/movie_card.html" with movie=movie %}
-	{% endfor %}
+  <div class="grid grid-cols-5 gap-4 mb-1">
+    {% for movie in user.favlist.movies.all %}
+      {% include "mixins/movie_card.html" with movie=movie %}
+    {% endfor %}
   </div>
 	<hr />
 </div>
 <div class="pt-6">
 	<div class="text-3xl mb-8">Books</div>
-  <div class="flex item-center flex-wrap">
-    {% for book in user.favs.book.all %}
+  <div class="grid grid-cols-5 gap-4 mb-1">
+    {% for book in user.favlist.books.all %}
       {% include "mixins/book_card.html" with book=book %}
     {% endfor %}
   </div>
