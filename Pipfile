@@ -24,6 +24,8 @@ psycopg2-binary = "*"
 pipenv-to-requirements = "*"
 update = "*"
 sentry-sdk = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.8"
