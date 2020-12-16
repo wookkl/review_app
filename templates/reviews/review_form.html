@@ -6,7 +6,6 @@
 
 {% block content %}
     <div class="form">
-        
         {% if type == "movie" %}
         <form class="w-1/2" action="{% url 'reviews:create' pk %}?type=movie" method="POST">
         {% elif type == "book" %}

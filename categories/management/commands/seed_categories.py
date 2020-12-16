@@ -18,6 +18,10 @@ class Command(BaseCommand):
             "Romance",
             "Thriller",
             "Western",
+            "Gangster",
+            "Romance",
+            "Adventure",
+            "Musical",
         ]
         choices = [
             Category.KIND_BOOK,
