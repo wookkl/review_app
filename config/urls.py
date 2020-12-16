@@ -13,15 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
-
-
-def trigger_error(request):
-    division_by_zero = 1 / 0
 
 
 urlpatterns = [
@@ -35,7 +32,6 @@ urlpatterns = [
     path("search/", include("core.urls", namespace="search")),
     path("categories/", include("categories.urls", namespace="categories")),
     path("people/", include("people.urls", namespace="people")),
-    path("sentry-debug/", trigger_error),
 ]
 
 if settings.DEBUG:
