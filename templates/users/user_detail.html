@@ -35,7 +35,7 @@
         {% endif %}
       </div>
     </div>
-    {% if user_obj.pk ==  user.pk %}
+    {% if user_obj.pk == user.pk %}
         <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
     {% endif %}
   </div>  

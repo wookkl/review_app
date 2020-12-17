@@ -13,8 +13,10 @@
       {% endfor %}
       <input class="submit-btn" type="submit" value="Update Profile" />
     </form>
-    <div class="text-center mt-3">
-      <a class="text-lg text-red-400" href="{% url 'users:password' %}">Change Password</a>
-    </div>
+    {% if user.login_method == "EM" %}
+      <div class="text-center mt-3">
+        <a class="text-lg text-red-400" href="{% url 'users:password' %}">Change Password</a>
+      </div> 
+    {% endif %}
 </div>
 {% endblock content %}

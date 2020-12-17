@@ -21,6 +21,7 @@ class CustomUserAdmin(UserAdmin):
                     "preference",
                     "fav_book_genre",
                     "fav_movie_genre",
+                    "login_method",
                 )
             },
         ),
@@ -35,6 +36,8 @@ class CustomUserAdmin(UserAdmin):
         "language",
         "fav_book_genre",
         "fav_movie_genre",
+        "login_method",
+
     )
 
     list_filter = (

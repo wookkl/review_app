@@ -8,4 +8,5 @@
         "--max-line-length=99"
     ],
     "editor.detectIndentation": false,
+    "compile-hero.disable-compile-files-on-did-save-code": false,
 }
