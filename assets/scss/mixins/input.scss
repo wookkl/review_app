@@ -16,3 +16,7 @@
 .form {
   @apply bg-white shadow-md rounded px-8 py-8 my-4 w-1/4 mx-auto mt-32;
 }
+
+.oauth-btn {
+  @apply font-medium rounded w-full mt-2 p-6 text-center text-lg;
+}

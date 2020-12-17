@@ -12,6 +12,15 @@ class User(AbstractUser):
 
     """ Custom User Model Definition """
 
+    LOGIN_GITHUB = "GH"
+    LOGIN_KAKAO = "KK"
+    LOGIN_EMAIL = "EM"
+    LOGIN_CHOICES = (
+        (LOGIN_EMAIL, _("Email")),
+        (LOGIN_GITHUB, _("Github")),
+        (LOGIN_KAKAO, _("Kakao")),
+    )
+
     LANG_ENGLISH = "en"
     LANG_KOREAN = "kr"
     LANG_JAPANESE = "jp"
@@ -49,7 +58,7 @@ class User(AbstractUser):
         on_delete=models.SET_NULL,
         related_name="users_fav_movie",
     )
-
+    login_method = models.CharField(choices=LOGIN_CHOICES, max_length=2, default=LOGIN_EMAIL)
     objects = core_managers.CustomUserManager()
 
     def get_absolute_url(self):

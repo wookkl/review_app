@@ -5,11 +5,15 @@
 {% endblock page_title %}
 
 {% block content %}
-  <form method="POST" action="{% url 'core:login' %}" class="form">
-    {% csrf_token %}
-    {% for field in form %}
-      {% include "mixins/input.html" with field=field %}
-    {% endfor %}
-    <input class="submit-btn" type="submit" value="login" />
-  </form>
+  <div class="form">
+    <form method="POST" action="{% url 'core:login' %}">
+      {% csrf_token %}
+      {% for field in form %}
+        {% include "mixins/input.html" with field=field %}
+      {% endfor %}
+      <input class="submit-btn" type="submit" value="Log In" />
+    </form>
+    <a class="block oauth-btn bg-gray-600 text-white hover:bg-gray-700" href="{% url 'users:github-login' %}"><i class="fab fa-github mr-1"></i>Github Log In</a>
+    <a class="block oauth-btn bg-yellow-300 text-white hover:bg-yellow-400" href="#">Kakao Log In</a>
+  </div>
 {% endblock content %}

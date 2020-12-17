@@ -1,11 +1,15 @@
+# System Library
+import os
+import requests
+
 # Django
-from django.contrib.auth.views import PasswordChangeView
-from django.shortcuts import render, redirect, reverse
-from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import FormView, DetailView, UpdateView
+from django.urls import reverse_lazy
+from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic import FormView, DetailView, UpdateView
 
 # local Django
 from users import forms, models, mixins
@@ -36,6 +40,64 @@ class LoginView(mixins.LoggedOutOnlyView, View):
             return next_arg
         else:
             return reverse("core:home")
+
+
+class GithubException(Exception):
+    pass
+
+
+def github_login(request):
+
+    """ Github Log In Definition """
+    client_id = os.environ.get("GITHUB_CLIENT_ID", None)
+    return redirect(f"https://github.com/login/oauth/authorize?client_id={client_id}&scope=read:user")
+
+
+def github_callback(request):
+
+    """ Github Callback Definition """
+
+    try:
+        client_id = os.environ.get("GITHUB_CLIENT_ID")
+        client_secret = os.environ.get("GITHUB_SECRET")
+        code = request.GET.get("code", None)
+        if code:
+            token_request = requests.post(
+                f"https://github.com/login/oauth/access_token?client_id={client_id}&client_secret={client_secret}&code={code}",
+                headers={"Accept": "application/json"},
+                )
+            token_json = token_request.json()
+            access_token = token_json["access_token"]
+            profile_json = requests.get("https://api.github.com/user", headers={
+                "Authorization": f"token {access_token}",
+                "Accept": "application/json",
+                }).json()
+            user = profile_json.get("login", None)
+            if user:
+                name = profile_json.get("name")
+                email = profile_json.get("email")
+                bio = profile_json.get("bio")
+                if bio is None:
+                    bio = ""
+                try:
+                    user = models.User.objects.get(email=email)
+                    if user.login_method != models.User.LOGIN_GITHUB:
+                        # Does not matched login method
+                        raise GithubException()
+                except models.User.DoesNotExist:
+                    user = models.User.objects.create(email=email, first_name=name, login_method=models.User.LOGIN_GITHUB, bio=bio)
+                    user.set_unusable_password()
+                    user.save()
+                login(request, user)
+                return redirect(reverse("core:home"))
+            else:
+                # Can't create user
+                raise GithubException()
+        else:
+            # Can't get  code
+            raise GithubException()
+    except GithubException:
+        return redirect(reverse("users:login"))
 
 
 def log_out(request):
@@ -124,3 +186,4 @@ class UpdatePasswordView(
 
     def get_success_url(self):
         return self.request.user.get_absolute_url()
+        

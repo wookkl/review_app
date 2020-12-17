@@ -8,5 +8,4 @@
         "--max-line-length=99"
     ],
     "editor.detectIndentation": false,
-    "editor.tabSize": 2,
 }
