@@ -1,8 +1,7 @@
 {% if user.avatar %}
-    <img src="{{user.avatar.url}}" />
+  <img src="{{user.avatar.url}}" />
 {% else %}
-    <div>
-        <span>{{user.first_name|first}}</span>
-    </div>
+  <div>
+    <span>{{ user.first_name|first }}</span>
+  </div>
 {% endif %}
-        

@@ -1,5 +1,8 @@
+# Django
 from django.views.generic import TemplateView
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect
+
+# local Django
 from movies import models as movie_models
 from books import models as book_models
 from . import models

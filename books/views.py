@@ -1,8 +1,8 @@
+# Django
 from django.http import Http404
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from django.views.generic import CreateView
-from django.views.generic import UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+
+# local Django
 from books import models as book_models
 from users import mixins as user_mixins
 

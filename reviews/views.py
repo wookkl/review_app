@@ -1,17 +1,26 @@
+# Django
 from django.views.generic import FormView
 from django.shortcuts import redirect, reverse
+
+# local Django
 from books import models as book_models
 from movies import models as movie_models
 from . import forms, models
 
 
 def delete_review(request, pk):
+
+    """ Delete review Detinition """
+
     if request.method == "GET":
         models.Review.objects.filter(pk=pk).delete()
         return redirect(request.META.get("HTTP_REFERER"))
 
 
 def create_review(request, pk):
+
+    """ create review Detinition """
+
     if request.method == "POST":
         _type = request.GET.get("type")
         form = forms.CreateReviewForm(request.POST)

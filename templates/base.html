@@ -2,20 +2,20 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block page_title %}{% endblock page_title %} | Wookkl</title>
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-        <link rel="shortcut icon" href="{% static 'favicon/star.svg'%}" type="image/x-icon">
-    </head>
-    <body class="bg-gray-50 box-border">
-        {% include "partials/header.html" %}
-        <div class="min-h-screen">
-            {% block content %}
-            {% endblock content %}
-        </div>
-        {% include "partials/footer.html" %}
-    </body>
-    <script src="https://kit.fontawesome.com/9d1ca604ee.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block page_title %}{% endblock page_title %} | Wookkl</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/star.svg'%}" type="image/x-icon">
+  </head>
+  <body class="bg-gray-50 box-border">
+    {% include "partials/header.html" %}
+    <div class="min-h-screen">
+      {% block content %}
+      {% endblock content %}
+    </div>
+    {% include "partials/footer.html" %}
+  </body>
+  <script src="https://kit.fontawesome.com/9d1ca604ee.js" crossorigin="anonymous"></script>
 </html>

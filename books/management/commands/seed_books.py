@@ -1,10 +1,17 @@
+# Standard Library
+
 import random
+
+# Django
 from django.core.management.base import BaseCommand
-from django.contrib.admin.utils import flatten
 from django_seed import Seed
+
+# local Django
 from books.models import Book
 from people.models import Person
 from categories.models import Category
+
+# local File
 import list_of_books
 
 

@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Sign Up
+  Sign Up
 {% endblock page_title %}
 
 {% block content %}
-    <form method="POST" action="{% url 'core:signup' %}" class="form">
-        {% csrf_token %}
-        {% for field in form %}
-                {% include "mixins/input.html" with field=field %}
-        {% endfor %}
-        <input class="submit-btn" type="submit" value="Sign up"/>
-    </form>
+<form method="POST" action="{% url 'core:signup' %}" class="form">
+  {% csrf_token %}
+  {% for field in form %}
+    {% include "mixins/input.html" with field=field %}
+  {% endfor %}
+  <input class="submit-btn" type="submit" value="Sign up" />
+</form>
 {% endblock content %}

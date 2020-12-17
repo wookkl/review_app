@@ -2,80 +2,88 @@
 {% load on_favs i18n %}
 
 {% block page_title %}
-    Detail Book
+Detail Book
 {% endblock page_title %}
 
 {% block content %}
-    <div class="detail">
-        {% if book.cover_image %}
-            <img src="{{book.cover_image.url}}"/>
-        {% else %}
-            <div class="detail__no-image"><span>No Image</span></div>            
-        {% endif %}
-        <div class="detail__content">
-            <div class="detail__content-row mb-8">
-                <div class="flex justify-start items-center text-3xl">
-                    <h1 class=" my-2">{{book.title}}</h1>
-                    {% if user.is_authenticated %}
-                        {% on_favs "book" book as on_favs_boolean %}
-                        {% if on_favs_boolean %}
-                            <a href="{% url 'favs:toggle-favs' pk=book.pk %}?action=delete&type=book"><i class="fas fa-heart text-red-500 mx-2"></i></a>
-                        {% else %}
-                            <a href="{% url 'favs:toggle-favs' pk=book.pk %}?action=add&type=book"><i class="far fa-heart text-red-500 mx-2"></i></a>
-                        {% endif %}
-                    {% endif %}
-                </div>   
-                <span class="span__circle bg-blue-300 ">{{book.year}}</span>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Rating</span>
-                <span class="span__circle bg-pink-400">{{book.rating}}</span>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Category</span>
-                <a href="{% url 'categories:detail' book.category.pk %}"><span class="span__circle bg-green-400 ">{{book.category}}</span></a>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Writer</span>
-                <a href="{% url 'people:detail' book.writer.pk %}"><span class="span__circle bg-red-900 ">{{book.writer}}</span></a>
-            </div>
-            <div class="detail__content-row text-center w-full">
-                <a class="detail__edit" href="{% url 'books:edit' book.pk%}">Edit Book</a>
-            </div>
+  <div class="detail">
+    {% if book.cover_image %}
+      <img src="{{book.cover_image.url}}" />
+    {% else %}
+      <div class="detail__no-image"><span>No Image</span></div>
+    {% endif %}
+    <div class="detail__content">
+      <div class="detail__content-row mb-8">
+        <div class="flex justify-start items-center text-3xl">
+          <h1 class=" my-2">{{book.title}}</h1>
+          {% if user.is_authenticated %}
+            {% on_favs "book" book as on_favs_boolean %}
+            {% if on_favs_boolean %}
+              <a href="{% url 'favs:toggle-favs' pk=book.pk %}?action=delete&type=book">
+                <i class="fas fa-heart text-red-500 mx-2"></i>
+              </a>
+            {% else %}
+              <a href="{% url 'favs:toggle-favs' pk=book.pk %}?action=add&type=book">
+                <i class="far fa-heart text-red-500 mx-2"></i>
+              </a>
+            {% endif %}
+          {% endif %}
         </div>
+        <span class="span__circle bg-blue-300 ">{{ book.year }}</span>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Rating</span>
+        <span class="span__circle bg-pink-400">{{ book.rating }}</span>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Category</span>
+        <a href="{% url 'categories:detail' book.category.pk %}">
+          <span class="span__circle bg-green-400 ">{{ book.category }}</span>
+        </a>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Writer</span>
+        <a href="{% url 'people:detail' book.writer.pk %}">
+          <span class="span__circle bg-red-900 ">{{ book.writer }}</span>
+        </a>
+      </div>
+      <div class="detail__content-row text-center w-full">
+        <a class="detail__edit" href="{% url 'books:edit' book.pk%}">Edit Book</a>
+      </div>
     </div>
-    <div class="reviews__box flex flex-col items-start">
-        <div class="flex w-full flex-col items-center">
-            <h2 class="text-2xl">Reviews</h2>
-            <div class="flex items-center text-red-300">
-                <div class="mr-4">
-                    <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
-                    <span class="font-bold text-xl">{{book.rating}}</span>
-                </div>
-                <div>
-                    <span class="font-bold text-xl ">{{book.reviews.count}}</span>
-                    <span class="text-xl">review{{book.reviews.count|pluralize}}</span>
-                </div>
-            </div>
+  </div>
+  <div class="reviews__box flex flex-col items-start">
+    <div class="flex w-full flex-col items-center">
+      <h2 class="text-2xl">Reviews</h2>
+      <div class="flex items-center text-red-300">
+        <div class="mr-4">
+          <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
+          <span class="font-bold text-xl">{{ book.rating}}</span>
         </div>
-        {% for review in book.reviews.all %}
-            <div class="mb-10 mx-5">
-                <div class="flex items-center mb-3">
-                    <div class="user__avatar w-12 h-12 text-xl relative mr-4">
-                        <span class="text-center">{{review.created_by.first_name|first}}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-medium">{{review.created_by.first_name}}</span>
-                        <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
-                    </div>
-                </div>
-                <p>{{review.text}}</p>
-            </div>
-        {% endfor %}
-        {% if user.is_authenticated %}
-            <div class="w-full text-center text-blue-400 mb-5">
-                <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=book">Write Review</a>
-            </div>
-        {% endif %}
+        <div>
+          <span class="font-bold text-xl ">{{ book.reviews.count }}</span>
+          <span class="text-xl">review{{ book.reviews.count|pluralize }}</span>
+        </div>
+      </div>
     </div>
+    {% for review in book.reviews.all %}
+      <div class="mb-10 mx-5">
+        <div class="flex items-center mb-3">
+          <div class="user__avatar w-12 h-12 text-xl relative mr-4">
+            <span class="text-center">{{ review.created_by.first_name|first }}</span>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-medium">{{ review.created_by.first_name }}</span>
+            <span class="text-sm text-gray-600">{{ review.created|date:'F Y' }}</span>
+          </div>
+        </div>
+        <p>{{ review.text }}</p>
+      </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+      <div class="w-full text-center text-blue-400 mb-5">
+        <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=book">Write Review</a>
+      </div>
+    {% endif %}
+  </div>
 {% endblock content %}

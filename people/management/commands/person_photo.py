@@ -1,6 +1,11 @@
-from django.core.management.base import BaseCommand
-from people.models import Person
+# Standard Library
 import random
+
+# Django
+from django.core.management.base import BaseCommand
+
+# local Django
+from people.models import Person
 
 
 class Command(BaseCommand):

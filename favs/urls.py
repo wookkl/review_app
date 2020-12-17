@@ -1,4 +1,7 @@
+# Django
 from django.urls import path
+
+# local Django
 from favs import views
 
 app_name = "favs"

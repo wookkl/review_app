@@ -1,11 +1,14 @@
+# Django
 from django.urls import path
-from users import views as user_views
+
+# local Django
+from users import views
 
 
 app_name = "users"
 
 urlpatterns = [
-    path("<int:pk>/", user_views.UserProfileView.as_view(), name="profile"),
-    path("update-profile", user_views.UpdateUserView.as_view(), name="update"),
-    path("update-password", user_views.UpdatePasswordView.as_view(), name="password"),
+    path("<int:pk>/", views.UserProfileView.as_view(), name="profile"),
+    path("update-profile", views.UpdateUserView.as_view(), name="update"),
+    path("update-password", views.UpdatePasswordView.as_view(), name="password"),
 ]

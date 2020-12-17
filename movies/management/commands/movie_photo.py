@@ -1,6 +1,11 @@
-from django.core.management.base import BaseCommand
-from movies.models import Movie
+# Standard Library
 import random
+
+# Django
+from django.core.management.base import BaseCommand
+
+# local Django
+from movies.models import Movie
 
 
 class Command(BaseCommand):

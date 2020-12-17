@@ -1,32 +1,26 @@
+# Django
 from django.contrib.auth.views import PasswordChangeView
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.shortcuts import reverse
+from django.shortcuts import render, redirect, reverse
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import FormView
-from django.views.generic import DetailView
-from django.views.generic import UpdateView
-from django.contrib.auth import login
-from django.contrib.auth import logout
-from django.contrib.auth import authenticate
-from django.contrib import messages
+from django.views.generic import FormView, DetailView, UpdateView
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.messages.views import SuccessMessageMixin
-from users import forms as user_forms
-from users import models as user_models
-from users import mixins as user_mixins
+
+# local Django
+from users import forms, models, mixins
 
 
-class LoginView(user_mixins.LoggedOutOnlyView, View):
+class LoginView(mixins.LoggedOutOnlyView, View):
 
     """ Login View Definition """
 
     def get(self, request):
-        form = user_forms.LogInForm()
+        form = forms.LogInForm()
         return render(request, "users/login.html", {"form": form})
 
     def post(self, request):
-        form = user_forms.LogInForm(request.POST)
+        form = forms.LogInForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
@@ -49,12 +43,12 @@ def log_out(request):
     return redirect(reverse("core:home"))
 
 
-class SignUpView(user_mixins.LoggedOutOnlyView, FormView):
+class SignUpView(mixins.LoggedOutOnlyView, FormView):
 
     """ SignUp View Definition """
 
     template_name = "users/signup.html"
-    form_class = user_forms.SignUpForm
+    form_class = forms.SignUpForm
     success_url = reverse_lazy("core:home")
     initial = {
         "first_name": "wo",
@@ -77,16 +71,16 @@ class UserProfileView(DetailView):
 
     """ User Profile View Definition """
 
-    model = user_models.User
+    model = models.User
 
     context_object_name = "user_obj"
 
 
-class UpdateUserView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
+class UpdateUserView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
 
     """ Update User View Definition """
 
-    model = user_models.User
+    model = models.User
     template_name = "users/update-profile.html"
     fields = (
         "email",
@@ -111,7 +105,7 @@ class UpdateUserView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVi
 
 
 class UpdatePasswordView(
-    user_mixins.LoggedInOnlyView, SuccessMessageMixin, PasswordChangeView
+    mixins.LoggedInOnlyView, SuccessMessageMixin, PasswordChangeView
 ):
 
     """ Update Password View Definition """

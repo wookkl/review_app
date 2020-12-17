@@ -1,5 +1,8 @@
+# Django
 from django.core.management.base import BaseCommand
 from django_seed import Seed
+
+# local Django
 from people.models import Person
 
 

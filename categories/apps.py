@@ -1,5 +1,6 @@
+# Django
 from django.apps import AppConfig
 
 
 class CategoriesConfig(AppConfig):
-    name = 'categories'
+    name = "categories"

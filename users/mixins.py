@@ -1,11 +1,13 @@
+# Django
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, reverse
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 class LoggedOutOnlyView(UserPassesTestMixin):
+
+    """ Logged Out Onloy View Mixin Definition """
 
     permission_denied_message = "Page not found"
 
@@ -18,6 +20,8 @@ class LoggedOutOnlyView(UserPassesTestMixin):
 
 
 class LoggedInOnlyView(LoginRequiredMixin):
+
+    """ Logged In Onloy View Mixin Definition """
 
     login_url = reverse_lazy("core:login")
 

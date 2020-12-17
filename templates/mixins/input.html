@@ -1,11 +1,11 @@
 <div>
-    {% if field.errors %}
-        {% for error in field.errors %}
-            <span>{{error}}</span>
-        {% endfor %}
-    {% endif %}
-    <div class="input">
-        <label class="label" for="{{field.auto_id}}">{{field.label}}</label>
-          {{field}}
-    </div>
+	{% if field.errors %}
+    {% for error in field.errors %}
+      <span>{{ error }}</span>
+    {% endfor %}
+	{% endif %}
+	<div class="input">
+		<label class="label" for="{{field.auto_id}}">{{ field.label }}</label>
+		{{ field }}
+	</div>
 </div>

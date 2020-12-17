@@ -1,5 +1,10 @@
+# Standard Library
 import random
+
+# Django
 from django.core.management.base import BaseCommand
+
+# local Django
 from favs.models import FavList
 from users.models import User
 from movies.models import Movie

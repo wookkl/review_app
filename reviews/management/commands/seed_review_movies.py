@@ -1,6 +1,11 @@
+# Standard Library
 import random
+
+# Django
 from django.core.management.base import BaseCommand
 from django_seed import Seed
+
+# local Django
 from reviews.models import Review
 from users.models import User
 from movies.models import Movie

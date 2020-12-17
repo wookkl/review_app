@@ -1,8 +1,13 @@
+# Standard Library
 from datetime import datetime
+
+# Django
 from django.db import models
 from django.shortcuts import reverse
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
+
+# local Django
 from core.models import TimeStampedModel
 
 

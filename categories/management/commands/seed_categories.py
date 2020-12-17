@@ -1,5 +1,10 @@
+# Standard Library
 import random
+
+# Django
 from django.core.management.base import BaseCommand
+
+# local Django
 from categories.models import Category
 
 

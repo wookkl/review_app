@@ -1,10 +1,17 @@
+# Standard Library
 import random
-from django.core.management.base import BaseCommand
-from django.contrib.admin.utils import flatten
+
+# Django
 from django_seed import Seed
+from django.contrib.admin.utils import flatten
+from django.core.management.base import BaseCommand
+
+# local Django
 from movies.models import Movie
 from people.models import Person
 from categories.models import Category
+
+# local Python File
 import list_of_movies
 
 

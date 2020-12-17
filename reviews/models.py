@@ -1,5 +1,8 @@
+# Django
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+
+# local Django
 from core.models import TimeStampedModel
 
 
@@ -28,4 +31,5 @@ class Review(TimeStampedModel):
     )
 
     def __str__(self):
-        return f"{self.text[:20]}..."
+        cutted_text = self.text[:20]
+        return f"{cutted_text}..."

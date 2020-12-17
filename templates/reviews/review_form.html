@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    Review
+  Review
 {% endblock page_title %}
 
 {% block content %}
-    <div class="form">
-        {% if type == "movie" %}
-        <form class="w-1/2" action="{% url 'reviews:create' pk %}?type=movie" method="POST">
-        {% elif type == "book" %}
-        <form class="w-1/2" action="{% url 'reviews:create' pk %}?type=book" method="POST">
-        {% endif %}
-            {% csrf_token %}
-            {% for field in form %}
-                {% include "mixins/input.html" with field=field %}
-            {% endfor %}
-            <input class="submit-btn" type="submit" value="Submit Review"/>
-        </form>
-    </div>
+  <div class="form">
+    {% if type == "movie" %}
+      <form class="w-1/2" action="{% url 'reviews:create' pk %}?type=movie" method="POST">
+    {% elif type == "book" %}
+      <form class="w-1/2" action="{% url 'reviews:create' pk %}?type=book" method="POST">
+    {% endif %}
+      {% csrf_token %}
+      {% for field in form %}
+        {% include "mixins/input.html" with field=field %}
+      {% endfor %}
+      <input class="submit-btn" type="submit" value="Submit Review" />
+    </form>
+  </div>
 {% endblock content %}

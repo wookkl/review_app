@@ -1,11 +1,14 @@
+# Django
 from django.urls import path
-from people import views as person_views
+
+# local Django
+from people import views
 
 app_name = "people"
 
 urlpatterns = [
-    path("", person_views.PersonList.as_view(), name="home"),
-    path("<int:pk>/", person_views.PersonDetail.as_view(), name="detail"),
-    path("<int:pk>/edit/", person_views.PersonEdit.as_view(), name="edit"),
-    path("create/", person_views.PersonCreate.as_view(), name="create"),
+    path("", views.PersonList.as_view(), name="home"),
+    path("<int:pk>/", views.PersonDetail.as_view(), name="detail"),
+    path("<int:pk>/edit/", views.PersonEdit.as_view(), name="edit"),
+    path("create/", views.PersonCreate.as_view(), name="create"),
 ]

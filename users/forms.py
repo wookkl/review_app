@@ -1,8 +1,14 @@
+# Django
 from django import forms
-from users import models as user_models
+
+# local Django
+from users import models
 
 
 class LogInForm(forms.Form):
+
+    """ Log In Form Definition """
+
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
@@ -10,26 +16,29 @@ class LogInForm(forms.Form):
         email = self.cleaned_data.get("email")
         password = self.cleaned_data.get("password")
         try:
-            user = user_models.User.objects.get(email=email)
+            user = models.User.objects.get(email=email)
             if user.check_password(password):
                 return self.cleaned_data
             else:
                 self.add_error("password", forms.ValidationError("Password is wrong"))
-        except user_models.User.DoesNotExist:
+        except models.User.DoesNotExist:
             self.add_error("email", forms.ValidationError("user does not exist"))
 
 
 class SignUpForm(forms.ModelForm):
+
+    """ Sign Up Form Definition """
+
+    password = forms.CharField(widget=forms.PasswordInput)
+    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
+
     class Meta:
-        model = user_models.User
+        model = models.User
         fields = [
             "email",
             "first_name",
             "last_name",
         ]
-
-    password = forms.CharField(widget=forms.PasswordInput)
-    password1 = forms.CharField(widget=forms.PasswordInput, label="Confirm Password")
 
     def clean_password1(self):
         password = self.cleaned_data.get("password")

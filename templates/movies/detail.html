@@ -2,97 +2,102 @@
 {% load on_favs i18n %}
 
 {% block page_title %}
-    Detail Movie
+  Detail Movie
 {% endblock page_title %}
 
 {% block content %}
-    <div class="detail">
-        {% if movie.cover_image %}
-            <img src="{{movie.cover_image.url}}"/>
-        {% else %}
-            <div class="detail__no-image"><span>No Image</span></div>            
-        {% endif %}
-        <div class="detail__content">
-            <div class="detail__content-row mb-8">
-                <div class="flex justify-start items-center text-3xl">
-                    <h1 class="my-2">{{movie.title}}</h1>
-                    {% if user.is_authenticated %}
-                        {% on_favs "movie" movie as on_favs_boolean %}
-                        {% if on_favs_boolean %}
-                            <a href="{% url 'favs:toggle-favs' pk=movie.pk %}?action=delete&type=movie"><i class="fas fa-heart text-red-500 mx-2"></i></a>
-                        {% else %}
-                            <a href="{% url 'favs:toggle-favs' pk=movie.pk %}?action=add&type=movie"><i class="far fa-heart text-red-500 mx-2"></i></a>
-                        {% endif %}
-                    {% endif %}
-                </div>
-                <span class="span__circle bg-blue-300 ">{{movie.year}}</span>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Rating</span>
-                <span class="span__circle bg-pink-400">{{movie.rating}}</span>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Category</span>
-                <a href="{% url 'categories:detail' movie.category.pk %}"><span class="span__circle bg-green-400 ">{{movie.category}}</span></a>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Director</span>
-                <a href="{% url 'people:detail' movie.director.pk %}"><span class="span__circle bg-red-900 ">{{movie.director}}</span></a>
-            </div>
-            <div class="detail__content-row">
-                <span class="detail__content-title">Cast</span>
-                <div class="flex flex-wrap">
-                    {% for c in movie.cast.all  %}
-                        <a href="{% url 'people:detail' c.pk %}"><span class="span__circle bg-yellow-400  mr-1 mb-1">{{c}}</span></a>
-                    {% endfor %}
-                </div>
-            </div>
-            <div class="detail__content-row text-center">
-                <a class="detail__edit" href="{% url 'movies:edit' movie.pk%}">Edit Movie</a>
-            </div>
+  <div class="detail">
+    {% if movie.cover_image %}
+      <img src="{{movie.cover_image.url}}" />
+    {% else %}
+      <div class="detail__no-image"><span>No Image</span></div>
+    {% endif %}
+    <div class="detail__content">
+      <div class="detail__content-row mb-8">
+        <div class="flex justify-start items-center text-3xl">
+          <h1 class="my-2">{{ movie.title }}</h1>
+            {% if user.is_authenticated %}
+              {% on_favs "movie" movie as on_favs_boolean %}
+              {% if on_favs_boolean %}
+              <a href="{% url 'favs:toggle-favs' pk=movie.pk %}?action=delete&type=movie"><i
+                  class="fas fa-heart text-red-500 mx-2"></i></a>
+              {% else %}
+              <a href="{% url 'favs:toggle-favs' pk=movie.pk %}?action=add&type=movie"><i
+                  class="far fa-heart text-red-500 mx-2"></i></a>
+              {% endif %}
+            {% endif %}
         </div>
-    </div>
-    <div class="reviews__box flex flex-col items-start">
-        <div class="flex w-full flex-col items-center">
-            <h2 class="text-3xl">Reviews</h2>
-            <div class="flex items-center text-red-300">
-                <div class="mr-4">
-                    <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
-                    <span class="font-bold text-xl">{{movie.rating}}</span>
-                </div>
-                <div>
-                    <span class="font-bold text-xl ">{{movie.reviews.count}}</span>
-                    <span class="text-xl">review{{movie.reviews.count|pluralize}}</span>
-                </div>
-            </div>
+        <span class="span__circle bg-blue-300 ">{{ movie.year }}</span>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Rating</span>
+        <span class="span__circle bg-pink-400">{{ movie.rating }}</span>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Category</span>
+        <a href="{% url 'categories:detail' movie.category.pk %}"><span
+            class="span__circle bg-green-400 ">{{ movie.category }}</span></a>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Director</span>
+        <a href="{% url 'people:detail' movie.director.pk %}"><span
+            class="span__circle bg-red-900 ">{{ movie.director }}</span></a>
+      </div>
+      <div class="detail__content-row">
+        <span class="detail__content-title">Cast</span>
+        <div class="flex flex-wrap">
+          {% for c in movie.cast.all %}
+          <a href="{% url 'people:detail' c.pk %}"><span class="span__circle bg-yellow-400  mr-1 mb-1">{{ c }}</span></a>
+          {% endfor %}
         </div>
-        {% for review in movie.reviews.all %}
-            <div class="mb-10 mx-5">
-                <div class="flex justify-between items-center">
-                    <div class="flex items-center mb-3">
-                        <a href="{% url 'users:profile' review.created_by.pk %}">
-                            <div class="user__avatar w-12 h-12 text-xl relative mr-4">
-                                <span class="text-center">{{review.created_by.first_name|first}}</span>
-                            </div>
-                        </a>
-                        <div class="flex flex-col">
-                            <span class="font-medium">{{review.created_by.first_name}}</span>
-                            <span class="text-sm text-gray-600">{{review.created|date:'F Y'}}</span>
-                        </div>
-                    </div>
-                    {% if review.created_by == user %}
-                        <div>
-                            <a class="span__circle bg-gray-400 hover:bg-gray-700 ml-4" href="{% url 'reviews:delete' review.pk %}">delete</a>
-                        </div>
-                    {% endif %}
-                </div>
-                <p>{{review.text}}</p>
-            </div>
-        {% endfor %}
-        {% if user.is_authenticated %}
-            <div class="w-full text-center text-blue-400 mb-5">
-                <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=movie">Write Review</a>
-            </div>
-        {% endif %}
+      </div>
+      <div class="detail__content-row text-center">
+        <a class="detail__edit" href="{% url 'movies:edit' movie.pk%}">Edit Movie</a>
+      </div>
     </div>
+  </div>
+  <div class="reviews__box flex flex-col items-start">
+    <div class="flex w-full flex-col items-center">
+      <h2 class="text-3xl">Reviews</h2>
+      <div class="flex items-center text-red-300">
+        <div class="mr-4">
+          <i class="fas fa-star text-teal-500 text-lg mr-1"></i>
+          <span class="font-bold text-xl">{{ movie.rating }}</span>
+        </div>
+        <div>
+          <span class="font-bold text-xl ">{{ movie.reviews.count }}</span>
+          <span class="text-xl">review{{ movie.reviews.count|pluralize }}</span>
+        </div>
+      </div>
+    </div>
+    {% for review in movie.reviews.all %}
+    <div class="mb-10 mx-5">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center mb-3">
+          <a href="{% url 'users:profile' review.created_by.pk %}">
+            <div class="user__avatar w-12 h-12 text-xl relative mr-4">
+              <span class="text-center">{{ review.created_by.first_name|first }}</span>
+            </div>
+          </a>
+          <div class="flex flex-col">
+            <span class="font-medium">{{ review.created_by.first_name }}</span>
+            <span class="text-sm text-gray-600">{{ review.created|date:'F Y' }}</span>
+          </div>
+        </div>
+        {% if review.created_by == user %}
+        <div>
+          <a class="span__circle bg-gray-400 hover:bg-gray-700 ml-4"
+            href="{% url 'reviews:delete' review.pk %}">delete</a>
+        </div>
+        {% endif %}
+      </div>
+      <p>{{review.text}}</p>
+    </div>
+    {% endfor %}
+    {% if user.is_authenticated %}
+      <div class="w-full text-center text-blue-400 mb-5">
+        <a class="text-2xl" href="{% url 'reviews:write' pk %}?type=movie">Write Review</a>
+      </div>
+    {% endif %}
+  </div>
 {% endblock content %}

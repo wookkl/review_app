@@ -1,33 +1,35 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-	Book Home
+  Book Home
 {% endblock page_title %}
 
 {% block content %}
-	<div class="container-md mx-auto w-full flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-16">
-		<div class="flex items-center">
-			<h2 class="ml-1 text-3xl text-blue-600">Books</h2>
-			<a class="ml-3 text-3xl text-red-400" href="{% url 'books:create' %}">[Create Book]</a>
-		</div>
-		<div class="grid my-5 grid-cols-5 gap-10">
-		  {% for book in page_obj %}
-		  	{% include "mixins/book_card.html" with book=book %}
-		  {% endfor %}
-		</div>
-	  <hr />
-	  </div>
-	  <div class="mt-2 flex justify-center">
-		<div>
-		{% if page_obj.has_previous %}
-			  <a class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" href="?page={{page_obj.previous_page_number}}">Previous</a>
-		  {% endif %}
-		  <span class="font-bold text-blue-600">
-		  Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
-		  </span>
-		  {% if page_obj.has_next  %}
-			  <a class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded" href="?page={{page_obj.next_page_number}}">Next</a>
-		  {% endif %}
-		</div>
-	</div>
+  <div class="container-md mx-auto w-full flex flex-col border rounded-xl shadow-xl px-8 py-6 mt-16">
+    <div class="flex items-center">
+      <h2 class="ml-1 text-3xl text-blue-600">Books</h2>
+      <a class="ml-3 text-3xl text-red-400" href="{% url 'books:create' %}">[Create Book]</a>
+    </div>
+    <div class="grid my-5 grid-cols-5 gap-10">
+      {% for book in page_obj %}
+        {% include "mixins/book_card.html" with book=book %}
+      {% endfor %}
+    </div>
+    <hr />
+  </div>
+  <div class="mt-2 flex justify-center">
+    <div>
+      {% if page_obj.has_previous %}
+      <a class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded"
+        href="?page={{page_obj.previous_page_number}}">Previous</a>
+      {% endif %}
+      <span class="font-bold text-blue-600">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+      </span>
+      {% if page_obj.has_next %}
+      <a class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-1 px-2 rounded"
+        href="?page={{page_obj.next_page_number}}">Next</a>
+      {% endif %}
+    </div>
+  </div>
 {% endblock content %}

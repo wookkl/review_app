@@ -1,42 +1,42 @@
 {% extends "base.html" %}
 
 {% block page_title %}
-    {{user_obj.first_name}}'s Profile
+  {{ user_obj.first_name }}'s Profile
 {% endblock page_title %}
 
 {% block content %}
-    <div class="user__detail">
-        <div class="user__avatar" style="top: -24px;">
-            <span class="text-center">{{user_obj.first_name|first}}</span>
-        </div>
-        <div class="user__info">
-            <div class="user__info-row">
-                <span>Bio</span>
-                <span>{{user_obj.bio}}</span>
-            </div>
-            <div class="user__info-row">
-                <span>Preference</span>
-                <span>{{user_obj.get_preference_display|capfirst}}</span>
-            </div>
-            <div class="user__info-row">
-                <span>Language</span>
-                <span>{{user_obj.get_language_display|capfirst}}</span>
-            </div>
-            <div class="user__info-row">
-                {% if user_obj.fav_movie_cat %}
-                    <span>Favourite Movie Category</span>
-                    <span>{{user_obj.fav_movie_cat}}</span>
-                {% endif %}
-            </div>
-            <div class="user__info-row">
-                {% if user_obj.fav_book_cat %}
-                    <span>Favourite Book Category</span>
-                    <span>{{user_obj.fav_book_cat}}</span> 
-                {% endif %}
-            </div>
-        </div>
-        {% if user_obj.pk ==  user.pk%}
-            <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
+  <div class="user__detail">
+    <div class="user__avatar" style="top: -24px;">
+      <span class="text-center">{{ user_obj.first_name|first }}</span>
+    </div>
+    <div class="user__info">
+      <div class="user__info-row">
+        <span>Bio</span>
+        <span>{{ user_obj.bio }}</span>
+      </div>
+      <div class="user__info-row">
+        <span>Preference</span>
+        <span>{{ user_obj.get_preference_display|capfirst }}</span>
+      </div>
+      <div class="user__info-row">
+        <span>Language</span>
+        <span>{{ user_obj.get_language_display|capfirst }}</span>
+      </div>
+      <div class="user__info-row">
+        {% if user_obj.fav_movie_cat %}
+          <span>Favourite Movie Category</span>
+          <span>{{ user_obj.fav_movie_cat }}</span>
         {% endif %}
-    </div>  
+      </div>
+      <div class="user__info-row">
+        {% if user_obj.fav_book_cat %}
+          <span>Favourite Book Category</span>
+          <span>{{ user_obj.fav_book_cat }}</span> 
+        {% endif %}
+      </div>
+    </div>
+    {% if user_obj.pk ==  user.pk %}
+        <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
+    {% endif %}
+  </div>  
 {% endblock content %}

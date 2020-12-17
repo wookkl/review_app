@@ -1,4 +1,7 @@
+# Django
 from django.urls import path
+
+# local Django
 from core import views as core_views
 from users import views as user_views
 
