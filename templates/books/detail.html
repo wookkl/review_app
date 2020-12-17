@@ -33,11 +33,11 @@
             </div>
             <div class="detail__content-row">
                 <span class="detail__content-title">Category</span>
-                <span class="span__circle bg-green-400 ">{{book.category}}</span>
+                <a href="{% url 'categories:detail' book.category.pk %}"><span class="span__circle bg-green-400 ">{{book.category}}</span></a>
             </div>
             <div class="detail__content-row">
                 <span class="detail__content-title">Writer</span>
-                <span class="span__circle bg-red-900 ">{{book.writer}}</span>
+                <a href="{% url 'people:detail' book.writer.pk %}"><span class="span__circle bg-red-900 ">{{book.writer}}</span></a>
             </div>
             <div class="detail__content-row text-center w-full">
                 <a class="detail__edit" href="{% url 'books:edit' book.pk%}">Edit Book</a>

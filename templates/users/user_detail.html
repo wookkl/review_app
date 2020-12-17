@@ -16,11 +16,11 @@
             </div>
             <div class="user__info-row">
                 <span>Preference</span>
-                <span>{{user_obj.preference|capfirst}}</span>
+                <span>{{user_obj.get_preference_display|capfirst}}</span>
             </div>
             <div class="user__info-row">
                 <span>Language</span>
-                <span>{{user_obj.language|capfirst}}</span>
+                <span>{{user_obj.get_language_display|capfirst}}</span>
             </div>
             <div class="user__info-row">
                 {% if user_obj.fav_movie_cat %}
@@ -35,6 +35,8 @@
                 {% endif %}
             </div>
         </div>
-        <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
+        {% if user_obj.pk ==  user.pk%}
+            <a class="text-red-400 block text-lg" href="{% url 'users:update' %}">Edit Profile</a>
+        {% endif %}
     </div>  
 {% endblock content %}
