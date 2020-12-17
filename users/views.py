@@ -211,22 +211,13 @@ class UpdateUserView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
 
 
 class UpdatePasswordView(
-    mixins.LoggedInOnlyView, SuccessMessageMixin, PasswordChangeView, mixins.EmailLogInOnlyView
+    mixins.EmailLogInOnlyView, SuccessMessageMixin, PasswordChangeView
 ):
 
     """ Update Password View Definition """
 
     template_name = "users/update-password.html"
     success_message = "Password updated"
-
-    def get_form(self, form_class=None):
-        form = super().get_form(form_class=form_class)
-        form.fields["old_password"].widget.attrs = {"placeholder": "Current Password"}
-        form.fields["new_password1"].widget.attrs = {"placeholder": "New Password"}
-        form.fields["new_password2"].widget.attrs = {
-            "placeholder": "Confirm new Password"
-        }
-        return form
-
+        
     def get_success_url(self):
         return self.request.user.get_absolute_url()
